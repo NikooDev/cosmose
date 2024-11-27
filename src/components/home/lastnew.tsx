@@ -1,16 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import './lastnew.scss';
+import Title from '@/components/ui/title';
 
 const Lastnew = () => {
   return (
     <section className="w-full flex flex-col mt-20 relative">
       <div className="container mx-auto">
         <div className="flex items-center justify-center">
-          <h1 className="flex flex-col text-center text-2xl container mx-auto">
-            <span className="font-NexaExtraLight">Dernière nouveauté</span>
-            <span className="font-NexaHeavy text-5xl">Quiz en équipe</span>
-          </h1>
+          <Title titleLight="Dernière nouveauté" titleBold="Quiz en équipe"/>
         </div>
         <div className="mt-28 flex justify-between">
           <div className="relative">

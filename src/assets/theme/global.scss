@@ -27,6 +27,10 @@ body {
   background: rgb(var(--theme-900));
 }
 
+.container {
+  padding: 0 1rem;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
