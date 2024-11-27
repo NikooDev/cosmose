@@ -1,0 +1,61 @@
+@use "cosmose";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --theme-50: 232 229 251;
+  --theme-100: 210 203 246;
+  --theme-200: 165 151 237;
+  --theme-300: 120 98 228;
+  --theme-400: 75 46 219;
+  --theme-500: 53 30 175;
+  --theme-600: 43 24 139;
+  --theme-700: 32 18 104;
+  --theme-800: 22 12 70;
+  --theme-900: 11 6 35;
+  --theme-950: 5 3 17;
+  scrollbar-color: #e8e5fb transparent;
+  scrollbar-width: thin;
+}
+
+body {
+  @apply font-NexaExtraLight;
+  color: rgb(var(--theme-50));
+  background: rgb(var(--theme-900));
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e1e1e1;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #e1e1e1;
+}
+
+::-webkit-scrollbar-track {
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
