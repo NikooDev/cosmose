@@ -15,7 +15,7 @@ const Header = () => {
 		<header role="banner" className="mt-4 p-4">
 			<nav className="container mx-auto flex items-center justify-between">
 				<div>
-					<Link href="/">
+					<Link href="/" aria-label="Retour à l'accueil">
 						<Logo height={32} color="white"/>
 					</Link>
 				</div>

@@ -5,6 +5,7 @@ import Partners from '@/components/home/partners';
 import Bestsellers from '@/components/home/bestsellers';
 import Infos from '@/components/home/infos';
 import Lastblog from '@/components/home/lastblog';
+import Footer from '@/components/footer/footer';
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Partners/>
       <Infos/>
       <Lastblog/>
+      <Footer/>
     </>
   );
 }

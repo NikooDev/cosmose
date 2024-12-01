@@ -1,14 +1,45 @@
-@keyframes scroll {
+@keyframes scroll-left {
   0% {
     transform: translateX(0);
   }
+  50% {
+    transform: translateX(-50%);
+  }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
 }
 
-.animate-scroll {
+@keyframes scroll-right {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-wrapper {
   display: flex;
-  animation: scroll 35s linear infinite;
-  width: calc(2 * 100%);
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.animate-scroll-left, .animate-scroll-right {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.animate-scroll-left {
+  animation: scroll-left 35s infinite forwards cubic-bezier(0.42, 0, 0.58, 1);
+  will-change: transform;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 35s infinite forwards cubic-bezier(0.42, 0, 0.58, 1);
+  will-change: transform;
 }

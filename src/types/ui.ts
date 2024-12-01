@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface LogoInterface {
 	height: number;
 	color: 'white' | 'black' | 'default';
@@ -5,10 +7,17 @@ export interface LogoInterface {
 }
 
 export interface TitleInterface {
+	semantique: 'h1' | 'h2' | 'h3' | 'h4'
 	titleLight: string;
 	titleBold: string;
 }
 
-export interface ButtonInterface {
+export interface ButtonInterface extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	className?: string;
+	children: React.ReactNode;
+}
 
+export interface CardInterface {
+	className?: string;
+	children: React.ReactNode;
 }

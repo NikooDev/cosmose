@@ -1,12 +1,52 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import Button from '@/components/ui/button';
 import Image from 'next/image';
 import Class from 'classnames';
 import './intro.scss';
+import Card from '@/components/ui/card';
 
 const Intro = () => {
+	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, date: new Date().toISOString().split('T')[0], budget: 200 })
 	const [isClient, setIsClient] = useState(false);
+	const [budget, setBudget] = useState<number>(200);
+	const [euroSignPosition, setEuroSignPosition] = useState<number>(0);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const handleInputChange = (type: 'objectif' | 'members' | 'date' | 'budget', e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+		const inputValue = e.target.value;
+
+		if (type === 'budget') {
+			const newValue = parseFloat(inputValue);
+
+			if (!isNaN(newValue)) {
+				setBudget(newValue);
+			}
+		}
+
+		setSearchForm({ ...searchForm, [type]: inputValue });
+	};
+
+	const getTextWidth = (text: string, font: string) => {
+		const canvas = document.createElement('canvas');
+		const context = canvas.getContext('2d');
+
+		if (context) {
+			context.font = font;
+			return context.measureText(text).width;
+		}
+
+		return 0;
+	};
+
+	useEffect(() => {
+		if (typeof window !== 'undefined' && inputRef.current) {
+			const inputFont = '16px NexaHeavy';
+			const textWidth = getTextWidth(budget.toString(), inputFont);
+			setEuroSignPosition(textWidth + 12);
+		}
+	}, [budget]);
 
 	const images = [
 		{ src: '/img/image1.jpg', width: 150, height: 100, style: { top: '-7.3rem', left: '12rem' } },
@@ -27,6 +67,10 @@ const Intro = () => {
 		}, 100 * index);
 	};
 
+	const handleSearchSubmit = () => {
+		console.log(searchForm);
+	}
+
 	return (
 		<section className="flex flex-col overflow-hidden pb-24">
 			<h1 className="text-7xl font-[900] mb-10 font-NexaHeavy mt-14 container mx-auto animate-slideInUp-1">
@@ -34,16 +78,17 @@ const Intro = () => {
 				du distanciel
 			</h1>
 			<div className="flex relative">
-				<Image src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-14 -left-40 pointer-events-none" alt="Ellipse"/>
+				<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-14 -left-40 pointer-events-none" alt="Ellipse"/>
 				<div className="container mx-auto flex justify-between">
-					<div className="bg-theme-50/10 h-[350px] w-[450px] flex flex-col backdrop-blur-lg p-6 relative z-20 rounded-3xl border border-theme-50/10 animate-slideInUp-2">
+					<Card className="h-[350px] w-[450px] animate-slideInUp-2">
 						<p className="text-lg">
 							Peut importe vos besoins et votre budget, trouvez
 							l'activité idéale pour vos équipes.</p>
 						<div className="flex w-full gap-4 mt-8">
 							<div className="w-full relative">
-								<label className="flex mb-1.5 font-NexaHeavy">Objectif</label>
-								<select className="w-full h-9 text-slate-800 rounded-2xl pl-3 pr-9 appearance-none">
+								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="objectif">Objectif</label>
+								<select id="objectif" className="w-full h-9 text-slate-800 rounded-2xl pl-3 pr-9 appearance-none font-NexaHeavy"
+												onChange={(event) => handleInputChange('objectif', event)}>
 									<option className="text-slate-600">Sélectionner</option>
 									<option>Améliorer la cohésion entre les collaborateurs</option>
 									<option>Facilité l'intégration des nouveaux collaborateurs</option>
@@ -53,31 +98,35 @@ const Intro = () => {
 									<option>Transmettre la culture de l'entreprise</option>
 									<option>Réduire le stress des collaborateurs</option>
 								</select>
-								<svg xmlns="http://www.w3.org/2000/svg" height={16} width={16} className="fill-slate-800 absolute right-2.5 top-10" viewBox="0 0 24 24">
+								<svg xmlns="http://www.w3.org/2000/svg" height={16} width={16} className="fill-slate-800 absolute right-2.5 top-10 pointer-events-none" viewBox="0 0 24 24">
 									<path d="M20.08,6.83a.5.5,0,0,1,.71,0l1.06,1.06a.48.48,0,0,1,0,.7l-9.19,9.19a.75.75,0,0,1-.53.22h-.26a.75.75,0,0,1-.53-.22L2.15,8.59a.48.48,0,0,1,0-.7L3.21,6.83a.5.5,0,0,1,.71,0L12,14.91Z"/>
 								</svg>
 							</div>
 							<div className="w-full">
-								<label className="flex mb-1.5 font-NexaHeavy">Participants</label>
-								<input type="number" min={1} max={20} defaultValue={4} className="w-full h-9 text-slate-800 rounded-2xl px-3"/>
+								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="members">Participants</label>
+								<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 							</div>
 						</div>
 						<div className="flex w-full gap-4 mt-4">
 							<div className="w-full">
-								<label className="flex mb-1.5 font-NexaHeavy">Date</label>
-								<input type="date" defaultValue={new Date().toISOString().split('T')[0]} className="w-full h-9 text-slate-800 rounded-2xl px-2"/>
+								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="date">Date</label>
+								<input type="date" id="date" defaultValue={searchForm.date} onChange={(event) => handleInputChange('budget', event)} className="w-full h-9 text-slate-800 rounded-2xl px-2 font-NexaHeavy"/>
 							</div>
 							<div className="w-full">
-								<label className="flex mb-1.5 font-NexaHeavy">Budget</label>
-								<input type="number" min={0} defaultValue={200} className="w-full h-9 text-slate-800 rounded-2xl px-3"/>
+								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="budget">Budget</label>
+								<div className="relative w-full h-9 rounded-2xl bg-white overflow-hidden px-3">
+									<input ref={inputRef} id="budget" pattern="^[0-9]+$" type="number" min={0} placeholder="200 €" defaultValue={searchForm.budget} onChange={(event) => handleInputChange('budget', event)} className="w-full h-full text-slate-800 font-NexaHeavy bg-transparent outline-none"/>
+									{
+										searchForm.budget && (
+											<span style={{left: `${euroSignPosition + 5}px`}} className="absolute top-1/2 transform -translate-y-1/2 text-slate-800 font-NexaHeavy pointer-events-none">€</span>
+										)}
+								</div>
 							</div>
 						</div>
-						<button className="bg-theme-400 font-NexaHeavy h-10 rounded-3xl mt-5 hover:bg-theme-500 transition-colors duration-150">Trouver
-							une activité
-						</button>
-					</div>
+						<Button onClick={handleSearchSubmit}>Trouver une activité</Button>
+					</Card>
 					<div className="relative w-1/2 h-full hero-img">
-						{images.map((image, index) => (
+					{images.map((image, index) => (
 							<Image
 								key={index}
 								src={image.src}

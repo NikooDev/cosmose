@@ -4,10 +4,10 @@ import Title from '@/components/ui/title';
 
 const Infos = () => {
   return (
-		<section className="w-full flex flex-col mt-20 relative">
+		<section className="w-full flex flex-col mt-28 relative">
 			<div className="container mx-auto">
 				<div className="flex items-center justify-center">
-					<Title titleLight="Rapprocher, engager, divertir" titleBold="Cosmose"/>
+					<Title titleLight="Rapprocher, engager, divertir" titleBold="Cosmose" semantique="h2"/>
 				</div>
 				<div className="mt-10">
 					<div className="flex justify-center mb-20">

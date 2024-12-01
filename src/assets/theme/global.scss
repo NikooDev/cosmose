@@ -27,6 +27,14 @@ body {
   background: rgb(var(--theme-900));
 }
 
+input:focus, select:focus {
+  outline: none;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
 .container {
   padding: 0 1rem;
 }
