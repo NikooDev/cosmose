@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/button';
 import toast from 'react-hot-toast';
@@ -9,14 +9,13 @@ import './footer.scss';
 const Footer = () => {
   const [email, setEmail] = useState<string | null>();
 
-  const handleNewsletters = () => {
-    const isEmailReg = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+  const handleNewsletters = (event: FormEvent) => {
+    event.preventDefault();
 
+    const isEmailReg = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
     toast.dismiss();
 
     if (email && isEmailReg.test(email)) {
-
-
       toast.success('Vous êtes maintenant inscrit à notre newsletter', { id: 'newsletters-success', duration: 5000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', borderRadius: '15px', color: 'rgb(30 41 59)' } });
       setEmail('');
     } else if (!email || email.length === 0 || (email.trim() && !isEmailReg.test(email))) {
@@ -40,10 +39,10 @@ const Footer = () => {
         <div className="w-full">
           <p className="font-NexaHeavy text-[1.3rem]">Newsletters</p>
           <label className="mt-1 text-2xl font-NexaExtraLight whitespace-nowrap" htmlFor="newsletter">Ne manquez pas vos nouveautés</label>
-          <div className="flex gap-4 items-center mt-5">
+          <form onSubmit={handleNewsletters} className="flex gap-4 items-center mt-5">
             <input type="text" id="newsletter" value={email ? email : ''} onChange={(event) => setEmail(event.target.value)} placeholder="Adresse e-mail" className="placeholder:text-theme-50 border border-theme-50 h-9 px-4 rounded-full w-full bg-transparent"/>
-            <Button onClick={handleNewsletters} className="mt-0 px-8 h-9">S'inscrire</Button>
-          </div>
+            <Button type="submit" className="mt-0 px-8 h-9">S'inscrire</Button>
+          </form>
         </div>
         <div className="w-3/4">
           <p className="font-NexaHeavy text-[1.3rem]">Nos réseaux</p>

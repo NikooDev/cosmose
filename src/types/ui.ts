@@ -22,3 +22,9 @@ export interface CardInterface {
 	className?: string;
 	children: React.ReactNode;
 }
+
+export interface LoaderInterface {
+	height: number;
+	width: number;
+	color: string;
+}

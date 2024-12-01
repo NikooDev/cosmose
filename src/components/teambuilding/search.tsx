@@ -1,8 +1,12 @@
 'use client';
 
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import Button from '@/components/ui/button';
+import { SearchInterface } from '@/types/search';
 
-const Search = () => {
+const Search: React.FC<SearchInterface> = ({
+	setLoading
+}) => {
 	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200 })
 	const [budget, setBudget] = useState<number>(200);
 	const [euroSignPosition, setEuroSignPosition] = useState<number>(0);
@@ -34,6 +38,14 @@ const Search = () => {
 		return 0;
 	};
 
+	const handleSearchSubmit = () => {
+		setLoading(true);
+
+		setTimeout(() => {
+			setLoading(false);
+		}, 3000)
+	}
+
 	useEffect(() => {
 		if (typeof window !== 'undefined' && inputRef.current) {
 			const inputFont = '16px NexaHeavy';
@@ -63,7 +75,7 @@ const Search = () => {
 					</svg>
 				</div>
 			</div>
-			<div className="flex w-full gap-4">
+			<div className="flex w-3/5 gap-4">
 				<div className="w-full">
 					<label className="flex mb-1.5 font-NexaHeavy" htmlFor="members">Participants</label>
 					<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
@@ -78,6 +90,7 @@ const Search = () => {
 					</div>
 				</div>
 			</div>
+			<Button onClick={handleSearchSubmit} className="mt-0 px-8 h-9 self-end">Rechercher</Button>
 		</div>
 	);
 }

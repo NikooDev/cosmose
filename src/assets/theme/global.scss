@@ -76,6 +76,14 @@ select:hover {
 
 $increment: 0.3;
 
+.animate-slideInUp-0 {
+  animation: SlideInUp .5s ease backwards;
+}
+
+.animate-slideOutUp {
+  animation: SlideOutUp .5s ease backwards;
+}
+
 @for $i from 1 through 10 {
   .animate-float-#{$i} {
     animation: Float 3s ease-in-out infinite;
@@ -99,6 +107,17 @@ $increment: 0.3;
   }
 }
 
+@keyframes SlideOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 @keyframes Float {
   0% {
     transform: translateY(0);
@@ -108,5 +127,14 @@ $increment: 0.3;
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes Rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1440deg);
   }
 }
