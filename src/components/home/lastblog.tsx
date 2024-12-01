@@ -10,7 +10,7 @@ const Lastblog = () => {
 					<Title titleLight="Notre blog" titleBold="Dernières actus" semantique="h2"/>
 				</div>
 			</div>
-			<img src="svg/wave3.svg" className="absolute left-0 w-full -z-10" alt="Rectangle"/>
+			<img src="svg/wave3.svg" className="absolute left-0 top-24 w-full -z-10" alt="Rectangle"/>
 		</section>
 	);
 }
