@@ -25,6 +25,7 @@ body {
   @apply font-NexaExtraLight;
   color: rgb(var(--theme-50));
   background: rgb(var(--theme-900));
+  overflow-x: hidden;
 }
 
 input:focus, select:focus {

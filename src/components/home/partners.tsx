@@ -19,13 +19,13 @@ const Partners = () => {
   ]
 
   return (
-    <section className="w-full flex flex-col mt-20 relative bg-gradient-to-t from-transparent via-theme-800 to-transparent py-8">
+    <section className="w-full flex flex-col mt-20 relative bg-gradient-to-t from-transparent via-theme-700 to-transparent py-8">
       <div className="container mx-auto">
         <div className="flex items-center justify-center">
           <Title titleLight="Ils ont passé" titleBold="Un bon moment" semantique="h2"/>
         </div>
       </div>
-      <div className="mt-16 relative overflow-hidden px-4">
+      <div className="mt-10 relative overflow-hidden px-4">
         <div className="flex flex-col h-auto w-full animate-scroll-wrapper">
           <div className="flex justify-center items-center animate-scroll-left mb-4">
             {partners.slice(0, 6).map((partner, index) => (
