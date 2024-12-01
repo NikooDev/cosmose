@@ -1,22 +1,17 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import '@/assets/theme/global.scss';
+import { Toaster } from 'react-hot-toast';
 import localFont from 'next/font/local';
 import Header from '@/components/header/header';
 import Class from 'classnames';
+import Footer from '@/components/footer/footer';
+import '@/assets/theme/global.scss';
 
 export const metadata: Metadata = {
-	title: 'Cosmose • Team Building en ligne',
-	description: 'Brisez la barrière du distanciel. Découvrez nos activités de team building en ligne : jeux collaboratifs, blind tests, serious games et animations en visioconférence pour booster l’engagement et la cohésion d’équipe.',
 	icons: {
-		icon: [
-			{
-				rel: 'icon',
-				type: 'image/ico',
-				url: '/favicon/favicon.ico',
-				sizes: '48x48'
-			},
-		]
+		icon: [{
+			rel: 'icon', type: 'image/ico', url: '/favicon/favicon.ico', sizes: '48x48'
+		}]
 	}
 };
 
@@ -25,17 +20,17 @@ const NexaHeavy = localFont({src: '../assets/fonts/Nexa-Heavy.ttf', variable: '-
 
 export default function RootLayout({
 	children
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="fr" className={Class(NexaHeavy.variable, NexaExtraLight.variable)}>
       <body>
+				<Toaster position="bottom-center"/>
         <Header/>
         <img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 pointer-events-none" alt="Ellipse"/>
         <main>
-          {children}
+          { children }
         </main>
+				<Footer/>
       </body>
 		</html>
 	);

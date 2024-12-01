@@ -8,13 +8,13 @@ import './intro.scss';
 import Card from '@/components/ui/card';
 
 const Intro = () => {
-	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, date: new Date().toISOString().split('T')[0], budget: 200 })
+	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200 })
 	const [isClient, setIsClient] = useState(false);
 	const [budget, setBudget] = useState<number>(200);
 	const [euroSignPosition, setEuroSignPosition] = useState<number>(0);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const handleInputChange = (type: 'objectif' | 'members' | 'date' | 'budget', e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+	const handleInputChange = (type: 'objectif' | 'members' | 'budget', e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const inputValue = e.target.value;
 
 		if (type === 'budget') {
@@ -49,14 +49,14 @@ const Intro = () => {
 	}, [budget]);
 
 	const images = [
-		{ src: '/img/image1.jpg', width: 150, height: 100, style: { top: '-7.3rem', left: '12rem' } },
-		{ src: '/img/image2.jpg', animated: true, width: 264, height: 176, style: { top: '0', left: '0' } },
-		{ src: '/img/image3.jpg', animated: true, width: 231, height: 154, style: { top: '-3.5rem', left: '29.5rem' } },
-		{ src: '/img/image4.jpg', width: 177, height: 118, style: { top: '-6rem', left: '22.4rem' } },
-		{ src: '/img/image5.jpg', animated: true, width: 193, height: 128, style: { top: '13.5rem', left: '26rem', zIndex: 1 } },
-		{ src: '/img/image6.jpg', width: 233, height: 154, style: { top: '12.1rem', left: '7.9rem' } },
-		{ src: '/img/image7.jpg', animated: true, width: 294, height: 196, style: { left: '17.5rem', top: '2.5rem' } },
-		{ src: '/img/image8.jpg', animated: true, width: 158, height: 105, style: { top: '9.5rem', left: '-3rem' } },
+		{ src: '/img/home/image1.jpg', width: 150, height: 100, style: { top: '-7.3rem', left: '12rem' } },
+		{ src: '/img/home/image2.jpg', animated: true, width: 264, height: 176, style: { top: '0', left: '0' } },
+		{ src: '/img/home/image3.jpg', animated: true, width: 231, height: 154, style: { top: '-3.5rem', left: '29.5rem' } },
+		{ src: '/img/home/image4.jpg', width: 177, height: 118, style: { top: '-6rem', left: '22.4rem' } },
+		{ src: '/img/home/image5.jpg', animated: true, width: 193, height: 128, style: { top: '13.5rem', left: '26rem', zIndex: 1 } },
+		{ src: '/img/home/image6.jpg', width: 233, height: 154, style: { top: '12.1rem', left: '7.9rem' } },
+		{ src: '/img/home/image7.jpg', animated: true, width: 294, height: 196, style: { left: '17.5rem', top: '2.5rem' } },
+		{ src: '/img/home/image8.jpg', animated: true, width: 158, height: 105, style: { top: '9.5rem', left: '-3rem' } },
 	];
 
 	useEffect(() => setIsClient(true), []);
@@ -102,31 +102,26 @@ const Intro = () => {
 									<path d="M20.08,6.83a.5.5,0,0,1,.71,0l1.06,1.06a.48.48,0,0,1,0,.7l-9.19,9.19a.75.75,0,0,1-.53.22h-.26a.75.75,0,0,1-.53-.22L2.15,8.59a.48.48,0,0,1,0-.7L3.21,6.83a.5.5,0,0,1,.71,0L12,14.91Z"/>
 								</svg>
 							</div>
-							<div className="w-full">
-								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="members">Participants</label>
-								<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
-							</div>
 						</div>
 						<div className="flex w-full gap-4 mt-4">
 							<div className="w-full">
-								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="date">Date</label>
-								<input type="date" id="date" defaultValue={searchForm.date} onChange={(event) => handleInputChange('budget', event)} className="w-full h-9 text-slate-800 rounded-2xl px-2 font-NexaHeavy"/>
+								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="members">Participants</label>
+								<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 							</div>
 							<div className="w-full">
 								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="budget">Budget</label>
 								<div className="relative w-full h-9 rounded-2xl bg-white overflow-hidden px-3">
 									<input ref={inputRef} id="budget" pattern="^[0-9]+$" type="number" min={0} placeholder="200 €" defaultValue={searchForm.budget} onChange={(event) => handleInputChange('budget', event)} className="w-full h-full text-slate-800 font-NexaHeavy bg-transparent outline-none"/>
-									{
-										searchForm.budget && (
-											<span style={{left: `${euroSignPosition + 5}px`}} className="absolute top-1/2 transform -translate-y-1/2 text-slate-800 font-NexaHeavy pointer-events-none">€</span>
-										)}
+									{searchForm.budget && (
+										<span style={{left: `${euroSignPosition + 5}px`}} className="absolute top-1/2 transform -translate-y-1/2 text-slate-800 font-NexaHeavy pointer-events-none">€</span>
+									)}
 								</div>
 							</div>
 						</div>
 						<Button onClick={handleSearchSubmit}>Trouver une activité</Button>
 					</Card>
 					<div className="relative w-1/2 h-full hero-img">
-					{images.map((image, index) => (
+						{images.map((image, index) => (
 							<Image
 								key={index}
 								src={image.src}

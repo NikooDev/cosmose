@@ -26,6 +26,7 @@ body {
   color: rgb(var(--theme-50));
   background: rgb(var(--theme-900));
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 input:focus, select:focus {
@@ -71,4 +72,41 @@ select:hover {
 
 ::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+$increment: 0.3;
+
+@for $i from 1 through 10 {
+  .animate-float-#{$i} {
+    animation: Float 3s ease-in-out infinite;
+    animation-delay: #{$i * $increment}s;
+  }
+
+  .animate-slideInUp-#{$i} {
+    animation: SlideInUp .5s ease backwards;
+    animation-delay: #{$i * $increment}s;
+  }
+}
+
+@keyframes SlideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes Float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

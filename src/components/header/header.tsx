@@ -24,16 +24,16 @@ const Header = () => {
 						<Link href="/" className={Class(linkClass, pathname === '/' && 'active')}>Accueil</Link>
 					</li>
 					<li className="relative">
-						<Link href="/" className={Class(linkClass, pathname === '/team-building' && 'active')}>Team Building</Link>
+						<Link href="/team-building" className={Class(linkClass, pathname === '/team-building' && 'active')}>Team Buildings</Link>
 					</li>
 					<li className="relative">
-						<Link href="/" className={Class(linkClass, pathname === '/a-propos' && 'active')}>Cosmose</Link>
+						<Link href="/cosmose" className={Class(linkClass, pathname === '/cosmose' && 'active')}>Cosmose</Link>
 					</li>
 					<li className="relative">
-						<Link href="/" className={Class(linkClass, pathname === '/blog' && 'active')}>Blog</Link>
+						<Link href="/blog" className={Class(linkClass, pathname === '/blog' && 'active')}>Blog</Link>
 					</li>
 					<li className="relative">
-						<Link href="/" className={Class(linkClass, pathname === '/contact' && 'active')}>Contact</Link>
+						<Link href="/contact" className={Class(linkClass, pathname === '/contact' && 'active')}>Contact</Link>
 					</li>
 				</ul>
 			</nav>

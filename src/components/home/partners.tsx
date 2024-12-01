@@ -4,18 +4,18 @@ import './partners.scss';
 
 const Partners = () => {
   const partners = [
-    { url: '/img/ca.png', height: 40, width: 200 },
-    { url: '/img/bouygues.png', height: 62, width: 200 },
-    { url: '/img/webedia.png', height: 62, width: 200 },
-    { url: '/img/intersport.png', height: 26, width: 226 },
-    { url: '/img/edf.png', height: 55, width: 129 },
-    { url: '/img/fortuneo.png', height: 55, width: 195 },
-    { url: '/img/airfrance.png', height: 22, width: 226 },
-    { url: '/img/alstom.png', height: 33, width: 170 },
-    { url: '/img/leclerc.png', height: 46, width: 200 },
-    { url: '/img/intermarche.png', height: 38, width: 200 },
-    { url: '/img/decathlon.png', height: 31, width: 200 },
-    { url: '/img/vinci.png', height: 59, width: 211 }
+    { url: '/img/partners/ca.png', height: 40, width: 200 },
+    { url: '/img/partners/bouygues.png', height: 62, width: 200 },
+    { url: '/img/partners/webedia.png', height: 62, width: 200 },
+    { url: '/img/partners/intersport.png', height: 26, width: 226 },
+    { url: '/img/partners/edf.png', height: 55, width: 129 },
+    { url: '/img/partners/fortuneo.png', height: 55, width: 195 },
+    { url: '/img/partners/airfrance.png', height: 22, width: 226 },
+    { url: '/img/partners/alstom.png', height: 33, width: 170 },
+    { url: '/img/partners/leclerc.png', height: 46, width: 200 },
+    { url: '/img/partners/intermarche.png', height: 38, width: 200 },
+    { url: '/img/partners/decathlon.png', height: 31, width: 200 },
+    { url: '/img/partners/vinci.png', height: 59, width: 211 }
   ]
 
   return (

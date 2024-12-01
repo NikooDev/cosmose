@@ -7,7 +7,7 @@ const Card: React.FC<CardInterface> = ({
 	children
 }) => {
   return (
-    <div className={twMerge('bg-theme-50/10 flex flex-col backdrop-blur-lg p-6 relative z-20 rounded-3xl border border-theme-50/10', className)}>
+    <div className={twMerge('bg-theme-50/10 flex flex-col backdrop-blur-[7px] p-6 relative z-20 rounded-3xl border border-theme-50/10', className)}>
 			{ children }
     </div>
   );

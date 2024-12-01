@@ -3,7 +3,7 @@
 <defs>
 <radialGradient id="paint0_radial_912_3735" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(562.249 441.925) rotate(90) scale(381.739 604.489)">
 <stop stop-color="#351EAF"/>
-<stop offset="1" stop-color="#160D49" stop-opacity="0.1"/>
+<stop offset="1" stop-color="#160D49" stop-opacity="0"/>
 </radialGradient>
 </defs>
 </svg>

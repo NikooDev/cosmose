@@ -13,34 +13,34 @@ const Lastnew = () => {
           <Title titleLight="Dernière nouveauté" titleBold="Quiz en équipe" semantique="h2"/>
         </div>
         <div className="mt-28 flex justify-between items-center gap-16 w-full">
-          <div className="relative w-full">
+          <div className="relative">
             <div className="absolute bg-white/20 border border-white/20 backdrop-blur-sm rounded-2xl w-32 h-20 -top-10 left-10 flex justify-center items-center">
               <img src="/svg/micro.svg" alt="Micro" height={42} width={32} className="mb-0.5"/>
             </div>
-            <Image src="/img/image9.jpg" alt="Person 9" className="rounded-3xl w-full" width={550} height={366}/>
+            <Image src="/img/home/image9.jpg" alt="Person 9" className="rounded-3xl" width={640} height={427}/>
             <div className="absolute bg-white/20 border border-white/20 backdrop-blur-sm -bottom-10 right-10 rounded-2xl w-32 h-20 flex justify-center items-center">
               <img src="/svg/camera.svg" alt="Camera" height={42} width={32} className="mb-0.5"/>
             </div>
           </div>
-          <div>
+          <div className="w-1/2">
             <h2 className="font-NexaHeavy text-2xl">Les Co’llègues</h2>
             <div className="flex items-center my-3">
               <div className="flex">
-                <img src="/img/time.svg" alt="time"/>
+                <img src="/img/icons/time.svg" alt="time"/>
                 <p className="ml-2 font-NexaHeavy">2h</p>
               </div>
               <p className="mx-2">•</p>
               <div className="flex">
-                <img src="/img/users.svg" alt="time"/>
+                <img src="/img/icons/users.svg" alt="time"/>
                 <p className="ml-2 font-NexaHeavy">8-16</p>
               </div>
               <p className="mx-2">•</p>
               <div className="flex">
-                <img src="/img/euro.svg" alt="time"/>
+                <img src="/img/icons/euro.svg" alt="time"/>
                 <p className="ml-2 font-NexaHeavy">30€/pers</p>
               </div>
             </div>
-            <p>
+            <p className="text-lg">
               Rivalisez d'ingéniosité et de rapidité pour répondre à des questions en duo ou en trio.<br/><br/>
               Ce jeu plein de rebondissements promet des moments de rires et de camaraderie, parfait pour resserrer les liens et découvrir vos collègues.
             </p>

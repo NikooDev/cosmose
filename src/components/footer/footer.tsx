@@ -1,9 +1,29 @@
-import React from 'react';
-import './footer.scss';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/button';
+import toast from 'react-hot-toast';
+import './footer.scss';
 
 const Footer = () => {
+  const [email, setEmail] = useState<string | null>();
+
+  const handleNewsletters = () => {
+    const isEmailReg = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+
+    toast.dismiss();
+
+    if (email && isEmailReg.test(email)) {
+
+
+      toast.success('Vous êtes maintenant inscrit à notre newsletter', { id: 'newsletters-success', duration: 5000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', borderRadius: '15px', color: 'rgb(30 41 59)' } });
+      setEmail('');
+    } else if (!email || email.length === 0 || (email.trim() && !isEmailReg.test(email))) {
+      toast.error('Votre adresse e-mail est incorrecte', { id: 'newsletters-error', duration: 3000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', borderRadius: '30px', color: 'rgb(30 41 59)' } });
+    }
+  }
+
   return (
     <footer role="contentinfo" className="pt-10">
       <div className="container mx-auto flex gap-28 !px-24">
@@ -18,11 +38,11 @@ const Footer = () => {
           </ul>
         </div>
         <div className="w-full">
-          <p className="font-NexaHeavy text-[1.3rem]">Newletters</p>
+          <p className="font-NexaHeavy text-[1.3rem]">Newsletters</p>
           <label className="mt-1 text-2xl font-NexaExtraLight whitespace-nowrap" htmlFor="newsletter">Ne manquez pas vos nouveautés</label>
           <div className="flex gap-4 items-center mt-5">
-            <input type="text" id="newsletter" placeholder="Adresse e-mail" className="placeholder:text-theme-50 border border-theme-50 h-9 px-4 rounded-full w-full bg-transparent"/>
-            <Button className="mt-0 px-8 h-9">S'inscrire</Button>
+            <input type="text" id="newsletter" value={email ? email : ''} onChange={(event) => setEmail(event.target.value)} placeholder="Adresse e-mail" className="placeholder:text-theme-50 border border-theme-50 h-9 px-4 rounded-full w-full bg-transparent"/>
+            <Button onClick={handleNewsletters} className="mt-0 px-8 h-9">S'inscrire</Button>
           </div>
         </div>
         <div className="w-3/4">
@@ -30,17 +50,17 @@ const Footer = () => {
           <ul className="mt-3 flex gap-7">
             <li>
               <a href="" target="_blank" role="button" className="group">
-                <img src="/img/instagram.svg" height={32} width={32} className="group-hover:scale-[1.2] transition-transform" alt="instagram"/>
+                <img src="/img/icons/instagram.svg" height={32} width={32} className="group-hover:scale-[1.2] transition-transform" alt="instagram"/>
               </a>
             </li>
             <li>
               <a href="" target="_blank" role="button" className="group">
-                <img src="/img/facebook.svg" height={32} width={32} className="group-hover:scale-[1.2] transition-transform" alt="facebook"/>
+                <img src="/img/icons/facebook.svg" height={32} width={32} className="group-hover:scale-[1.2] transition-transform" alt="facebook"/>
               </a>
             </li>
             <li>
               <a href="" target="_blank" role="button" className="group">
-                <img src="/img/linkedin.svg" height={32} width={32} className="group-hover:scale-[1.2] transition-transform" alt="linkedin"/>
+                <img src="/img/icons/linkedin.svg" height={32} width={32} className="group-hover:scale-[1.2] transition-transform" alt="linkedin"/>
               </a>
             </li>
           </ul>
