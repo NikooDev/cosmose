@@ -26,5 +26,4 @@ export interface CardInterface {
 export interface LoaderInterface {
 	height: number;
 	width: number;
-	color: string;
 }

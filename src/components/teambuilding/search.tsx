@@ -43,7 +43,7 @@ const Search: React.FC<SearchInterface> = ({
 
 		setTimeout(() => {
 			setLoading(false);
-		}, 3000)
+		}, 1500)
 	}
 
 	useEffect(() => {

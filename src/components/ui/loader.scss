@@ -1,8 +1,39 @@
+$offset: 187;
+$duration: 1.5s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
 .path {
-  fill: none;
-  stroke-width: 3px;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: Rotate 1s cubic-bezier(0.25, 0.1, 0.25, 1) infinite forwards;
-  will-change: transform;
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash $duration ease-in-out infinite, colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% { stroke: rgb(232 229 251); }
+  30% { stroke: rgb(232 229 251); }
+  50% { stroke: rgb(75 46 219); }
+  90% { stroke: rgb(165 151 237); }
+  95% { stroke: rgb(232 229 251); }
+  100% { stroke: rgb(232 229 251); }
+}
+
+@keyframes dash {
+  0% { stroke-dashoffset: $offset; }
+  50% {
+    stroke-dashoffset: $offset/4;
+    transform:rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: $offset;
+    transform:rotate(450deg);
+  }
 }
