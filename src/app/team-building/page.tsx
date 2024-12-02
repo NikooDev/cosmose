@@ -13,7 +13,7 @@ const TeamBuilding = () => {
   return (
     <section className="relative z-10 pt-10 pb-10">
 			<Title semantique="h1" titleLight="Découvrez" titleBold="Nos team-buildings digitaux" className="mb-10 animate-slideInUp-1"/>
-			<div className="container mx-auto flex flex-col items-center">
+			<div className="container mx-auto flex flex-col">
 				<Teambuildings/>
 			</div>
 		</section>

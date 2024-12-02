@@ -5,9 +5,10 @@ import Button from '@/components/ui/button';
 import { SearchInterface } from '@/types/search';
 
 const Search: React.FC<SearchInterface> = ({
-	setLoading
+	setLoading,
+	setSearchForm,
+	searchForm
 }) => {
-	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200 })
 	const [budget, setBudget] = useState<number>(200);
 	const [euroSignPosition, setEuroSignPosition] = useState<number>(0);
 	const inputRef = useRef<HTMLInputElement>(null);

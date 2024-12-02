@@ -1,11 +1,12 @@
 'use client';
 
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import Button from '@/components/ui/button';
 import Image from 'next/image';
 import Class from 'classnames';
-import './intro.scss';
 import Card from '@/components/ui/card';
+import './intro.scss';
 
 const Intro = () => {
 	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200 })
@@ -78,10 +79,9 @@ const Intro = () => {
 				du distanciel
 			</h1>
 			<div className="flex relative">
-				<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-14 -left-40 pointer-events-none" alt="Ellipse"/>
 				<div className="container mx-auto flex justify-between">
 					<Card className="h-[350px] w-[450px] animate-slideInUp-2">
-						<p className="text-lg">
+					<p className="text-lg">
 							Peut importe vos besoins et votre budget, trouvez
 							l'activité idéale pour vos équipes.</p>
 						<div className="flex w-full gap-4 mt-8">
@@ -138,7 +138,6 @@ const Intro = () => {
 						</div>
 					</div>
 				</div>
-				<img src="svg/wave.svg" className="absolute left-0 -top-40 w-full -z-10" alt="Rectangle"/>
 			</div>
 			<div className="flex justify-center relative">
 				<div className="flex items-center justify-center flex-col absolute -bottom-[5rem] animate-float-1 bg-white z-50 w-7 h-10 rounded-3xl">

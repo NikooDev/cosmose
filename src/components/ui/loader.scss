@@ -14,22 +14,22 @@ $duration: 1.5s;
   stroke-dasharray: 187;
   stroke-dashoffset: 0;
   transform-origin: center;
-  animation: dash $duration ease-in-out infinite, colors ($duration*4) ease-in-out infinite;
+  animation: dash $duration ease-in-out infinite, colors (calc($duration*4)) ease-in-out infinite;
 }
 
 @keyframes colors {
   0% { stroke: rgb(232 229 251); }
   30% { stroke: rgb(232 229 251); }
   50% { stroke: rgb(75 46 219); }
-  90% { stroke: rgb(165 151 237); }
-  95% { stroke: rgb(232 229 251); }
-  100% { stroke: rgb(232 229 251); }
+  90% { stroke: rgb(120 98 228); }
+  95% { stroke: rgb(165 151 237); }
+  100% { stroke: rgb(210 203 246); }
 }
 
 @keyframes dash {
   0% { stroke-dashoffset: $offset; }
   50% {
-    stroke-dashoffset: $offset/4;
+    stroke-dashoffset: calc($offset/4);
     transform:rotate(135deg);
   }
   100% {

@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import Header from '@/components/header/header';
 import Class from 'classnames';
 import Footer from '@/components/footer/footer';
+import Wave from '@/components/ui/wave';
 import '@/assets/theme/global.scss';
 
 export const metadata: Metadata = {
@@ -23,15 +24,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="fr" className={Class(NexaHeavy.variable, NexaExtraLight.variable)}>
-      <body>
+			<body>
 				<Toaster position="bottom-center"/>
-        <Header/>
-        <img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 pointer-events-none" alt="Ellipse"/>
-        <main>
-          { children }
-        </main>
+				<Header/>
+				<Wave/>
+				<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 -z-10 pointer-events-none" alt="Ellipse"/>
+				<img src="svg/ellipse3.svg" height={400} width={600} className="absolute top-72 left-0 -z-10 pointer-events-none" alt="Ellipse"/>
+				<main>
+					{children}
+				</main>
 				<Footer/>
-      </body>
+			</body>
 		</html>
 	);
 }
