@@ -7,6 +7,7 @@ import Class from 'classnames';
 import Footer from '@/components/footer/footer';
 import Wave from '@/components/ui/wave';
 import '@/assets/theme/global.scss';
+import Top from '@/app/top';
 
 export const metadata: Metadata = {
 	icons: {
@@ -25,15 +26,17 @@ export default function RootLayout({
 	return (
 		<html lang="fr" className={Class(NexaHeavy.variable, NexaExtraLight.variable)}>
 			<body>
-				<Toaster position="bottom-center"/>
-				<Header/>
-				<Wave/>
-				<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 -z-10 pointer-events-none" alt="Ellipse"/>
-				<img src="svg/ellipse3.svg" height={400} width={600} className="absolute top-32 -left-32 -z-10 pointer-events-none" alt="Ellipse"/>
-				<main>
-					{children}
-				</main>
-				<Footer/>
+				<Top>
+					<Toaster position="bottom-center"/>
+					<Header/>
+					<Wave/>
+					<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 -z-10 pointer-events-none" alt="Ellipse"/>
+					<img src="svg/ellipse3.svg" height={400} width={600} className="absolute top-32 -left-32 -z-10 pointer-events-none" alt="Ellipse"/>
+					<main>
+						{children}
+					</main>
+					<Footer/>
+				</Top>
 			</body>
 		</html>
 	);

@@ -1,11 +1,20 @@
+'use client';
+
 import React from 'react';
-import './bestsellers.scss';
+import { useRouter } from 'next/navigation';
 import Title from '@/components/ui/title';
 import Card from '@/components/ui/card';
 import Image from 'next/image';
 import Button from '@/components/ui/button';
+import './bestsellers.scss';
 
 const Bestsellers = () => {
+  const router = useRouter();
+
+  const handleRedirect = (url: string) => {
+    router.push(url);
+  }
+
   return (
     <section className="w-full flex flex-col mt-32 relative min-h-[700px]">
       <div className="container mx-auto">
@@ -91,7 +100,7 @@ const Bestsellers = () => {
           </Card>
         </div>
         <div className="flex justify-center my-8">
-          <Button className="px-6">Nos team-buildings</Button>
+          <Button onClick={() => handleRedirect('/team-building')} className="px-6">Nos team-buildings</Button>
         </div>
       </div>
       <img src="svg/wave.svg" className="absolute left-0 top-44 w-full -z-10" alt="Rectangle"/>

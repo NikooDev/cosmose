@@ -12,7 +12,7 @@ const Legal = () => {
   return (
 		<section className="relative z-10 pt-10 pb-10">
 			<Title semantique="h1" titleLight="Mentions" titleBold="Légales" className="mb-10 animate-slideInUp-1"/>
-			<div className="container mx-auto mb-10">
+			<div className="container mx-auto mb-10 animate-slideInUp-2">
 				<h2 className="font-NexaHeavy text-2xl">Éditeur du site</h2>
 				<p className="text-lg">Le site www.cosmose.com est édité par :</p>
 				<p className="font-NexaHeavy text-lg mt-2">Cosmose</p>
