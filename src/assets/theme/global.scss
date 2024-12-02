@@ -27,6 +27,7 @@ body {
   background: rgb(var(--theme-900));
   overflow-x: hidden;
   overflow-y: scroll;
+  width: 100vw;
 }
 
 input:focus, select:focus {

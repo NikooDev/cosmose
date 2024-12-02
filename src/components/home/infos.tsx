@@ -1,6 +1,7 @@
 import React from 'react';
 import './infos.scss';
 import Title from '@/components/ui/title';
+import Card from '@/components/ui/card';
 
 const Infos = () => {
   return (
@@ -18,24 +19,24 @@ const Infos = () => {
 					</div>
 					<div className="flex gap-14 relative">
 						<img src="svg/ellipse2.svg" height={717} width={1445} className="absolute -top-72 left-40 -z-10 pointer-events-none" alt="Ellipse"/>
-						<div className="bg-theme-50/10 w-full flex justify-center items-center flex-col backdrop-blur-lg py-6 px-4 relative z-20 rounded-3xl border border-theme-50/10">
+						<Card className="w-full items-center">
 							<img src="/img/icons/reunion.png" height={50} width={50} alt="reunion"/>
 							<p className="font-NexaHeavy text-2xl mt-2 mb-4">Rapprocher</p>
 							<p className="text-center text-lg">Les équipes dispersées à travers des expériences collaboratives uniques,
 								renforçant ainsi les liens professionnels et personnels.</p>
-						</div>
-						<div className="bg-theme-50/10 w-full flex justify-center items-center flex-col backdrop-blur-lg py-6 px-4 relative z-20 rounded-3xl border border-theme-50/10">
+						</Card>
+						<Card className="w-full items-center">
 							<img src="/img/icons/presentation.png" height={50} width={50} alt="reunion"/>
 							<p className="font-NexaHeavy text-2xl mt-2 mb-4">Engager</p>
 							<p className="text-center text-lg">Chaque membre de l'équipe dans une aventure immersive, favorisant ainsi la
 								participation active et l'implication à long terme.</p>
-						</div>
-						<div className="bg-theme-50/10 w-full flex justify-center items-center flex-col backdrop-blur-lg py-6 px-4 relative z-20 rounded-3xl border border-theme-50/10">
+						</Card>
+						<Card className="w-full items-center">
 							<img src="/img/icons/joie.png" height={50} width={50} alt="reunion"/>
 							<p className="font-NexaHeavy text-2xl mt-2 mb-4">Divertir</p>
 							<p className="text-center text-lg">Les collaborateurs avec des activités ludiques et interactives, offrant ainsi
 								une pause méritée dans leur quotidien professionnel.</p>
-						</div>
+						</Card>
 					</div>
 				</div>
 			</div>

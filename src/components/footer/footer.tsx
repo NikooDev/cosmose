@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Button from '@/components/ui/button';
 import toast from 'react-hot-toast';
 import './footer.scss';
+import Logo from '@/assets/static/logo';
 
 const Footer = () => {
   const [email, setEmail] = useState<string | null>();
@@ -24,7 +25,7 @@ const Footer = () => {
   }
 
   return (
-    <footer role="contentinfo" className="pt-10">
+    <footer role="contentinfo" className="relative pt-10 bg-gradient-to-t from-black/70 to-transparent">
       <div className="container mx-auto flex gap-28 !px-24">
         <div className="w-3/4">
           <p className="font-NexaHeavy text-[1.3rem]">Liens utiles</p>
@@ -38,8 +39,9 @@ const Footer = () => {
         </div>
         <div className="w-full">
           <p className="font-NexaHeavy text-[1.3rem]">Newsletters</p>
-          <label className="mt-1 text-2xl font-NexaExtraLight whitespace-nowrap" htmlFor="newsletter">Ne manquez pas vos nouveautés</label>
-          <form onSubmit={handleNewsletters} className="flex gap-4 items-center mt-5">
+          <label className="mt-1 text-2xl font-NexaExtraLight whitespace-nowrap" htmlFor="newsletter">Ne manquez pas vos
+            nouveautés</label>
+          <form onSubmit={handleNewsletters} autoComplete="off" className="flex gap-4 items-center mt-5">
             <input type="text" id="newsletter" value={email ? email : ''} onChange={(event) => setEmail(event.target.value)} placeholder="Adresse e-mail" className="placeholder:text-theme-50 border border-theme-50 h-9 px-4 rounded-full w-full bg-transparent"/>
             <Button type="submit" className="mt-0 px-8 h-9">S'inscrire</Button>
           </form>
@@ -65,7 +67,9 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <p className="text-center my-8">Cosmose © {new Date().getFullYear()}</p>
+      <p className="text-center py-8">
+        <Logo height={16} color="white" className="inline-flex mb-1 mr-0.5"/> © {new Date().getFullYear()}
+      </p>
     </footer>
   );
 }
