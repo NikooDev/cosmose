@@ -7,7 +7,7 @@ import Search from '@/components/teambuilding/search';
 import Card from '@/components/ui/card';
 
 const Teambuildings = () => {
-	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200 });
+	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200, date: new Date().toISOString().split('T')[0] });
 	const [loading, setLoading] = useState(false);
 
   return (
