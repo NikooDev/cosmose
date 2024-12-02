@@ -13,7 +13,7 @@ const Bestsellers = () => {
           <Title titleLight="Découvrez nos" titleBold="Best-Sellers" semantique="h2"/>
         </div>
         <div className="flex gap-14">
-          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300">
+          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300 hover:cursor-pointer">
             <Image src="/img/game1.jpg" width={387} height={258} alt="game1" className="w-full h-[258px] rounded-t-3xl"/>
             <div className="p-4">
               <p className="text-3xl font-NexaHeavy">Fast Quizz</p>
@@ -39,7 +39,7 @@ const Bestsellers = () => {
               </p>
             </div>
           </Card>
-          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300">
+          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300 hover:cursor-pointer">
             <Image src="/img/game2.jpg" width={387} height={258} alt="game2" className="w-full h-[258px] rounded-t-3xl"/>
             <div className="p-4">
               <p className="text-3xl font-NexaHeavy">Jeu de rôle</p>
@@ -64,7 +64,7 @@ const Bestsellers = () => {
               </p>
             </div>
           </Card>
-          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300">
+          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300 hover:cursor-pointer">
             <Image src="/img/game3.jpg" width={387} height={258} alt="game3" className="w-full h-[258px] rounded-t-3xl"/>
             <div className="p-4">
               <p className="text-3xl font-NexaHeavy">Blindtest musical</p>

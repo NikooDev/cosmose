@@ -29,7 +29,7 @@ export default function RootLayout({
 				<Header/>
 				<Wave/>
 				<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 -z-10 pointer-events-none" alt="Ellipse"/>
-				<img src="svg/ellipse3.svg" height={400} width={600} className="absolute top-72 left-0 -z-10 pointer-events-none" alt="Ellipse"/>
+				<img src="svg/ellipse3.svg" height={400} width={600} className="absolute top-32 -left-32 -z-10 pointer-events-none" alt="Ellipse"/>
 				<main>
 					{children}
 				</main>
