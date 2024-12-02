@@ -30,6 +30,10 @@ body {
   width: 100vw;
 }
 
+input, select {
+  background-color: rgb(var(--theme-50));
+}
+
 input:focus, select:focus {
   outline: none;
 }

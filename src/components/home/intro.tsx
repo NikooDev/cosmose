@@ -9,13 +9,13 @@ import Card from '@/components/ui/card';
 import './intro.scss';
 
 const Intro = () => {
-	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200 })
+	const [searchForm, setSearchForm] = useState({ objectif: '', members: 4, budget: 200, date: new Date().toISOString().split('T')[0] })
 	const [isClient, setIsClient] = useState(false);
 	const [budget, setBudget] = useState<number>(200);
 	const [euroSignPosition, setEuroSignPosition] = useState<number>(0);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const handleInputChange = (type: 'objectif' | 'members' | 'budget', e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+	const handleInputChange = (type: 'objectif' | 'members' | 'budget' | 'date', e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const inputValue = e.target.value;
 
 		if (type === 'budget') {
@@ -102,15 +102,19 @@ const Intro = () => {
 									<path d="M20.08,6.83a.5.5,0,0,1,.71,0l1.06,1.06a.48.48,0,0,1,0,.7l-9.19,9.19a.75.75,0,0,1-.53.22h-.26a.75.75,0,0,1-.53-.22L2.15,8.59a.48.48,0,0,1,0-.7L3.21,6.83a.5.5,0,0,1,.71,0L12,14.91Z"/>
 								</svg>
 							</div>
-						</div>
-						<div className="flex w-full gap-4 mt-4">
 							<div className="w-full">
 								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="members">Participants</label>
 								<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 							</div>
+						</div>
+						<div className="flex w-full gap-4 mt-4">
+							<div className="w-full">
+								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="date">Date</label>
+								<input type="date" id="date" min={1} max={20} onChange={(event) => handleInputChange('date', event)} defaultValue={searchForm.date} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
+							</div>
 							<div className="w-full">
 								<label className="flex mb-1.5 font-NexaHeavy" htmlFor="budget">Budget</label>
-								<div className="relative w-full h-9 rounded-2xl bg-white overflow-hidden px-3">
+								<div className="relative w-full h-9 rounded-2xl bg-theme-50 overflow-hidden px-3">
 									<input ref={inputRef} id="budget" pattern="^[0-9]+$" type="number" min={0} placeholder="200 €" defaultValue={searchForm.budget} onChange={(event) => handleInputChange('budget', event)} className="w-full h-full text-slate-800 font-NexaHeavy bg-transparent outline-none"/>
 									{searchForm.budget && (
 										<span style={{left: `${euroSignPosition + 5}px`}} className="absolute top-1/2 transform -translate-y-1/2 text-slate-800 font-NexaHeavy pointer-events-none">€</span>
