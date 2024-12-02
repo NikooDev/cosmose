@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const Privacy = () => {
   return (
-		<section className="relative z-10 pt-10 pb-10">
+		<section className="relative z-10 pt-10 pb-10 min-h-[500px]">
 			<Title semantique="h1" titleLight="Politique de" titleBold="Confidentialité" className="mb-10 animate-slideInUp-1"/>
 		</section>
 	);

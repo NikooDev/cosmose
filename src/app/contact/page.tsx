@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const Contact = () => {
   return (
-		<section className="relative z-10 pt-10 pb-10">
+		<section className="relative z-10 pt-10 pb-10 min-h-[500px]">
 			<Title semantique="h1" titleLight="Une question ?" titleBold="Contactez-nous" className="mb-10 animate-slideInUp-1"/>
 		</section>
 	);
