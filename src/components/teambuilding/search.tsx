@@ -13,6 +13,7 @@ const Search: React.FC<SearchInterface> = ({
 	const [euroSignPosition, setEuroSignPosition] = useState<number>(0);
 	const inputRef = useRef<HTMLInputElement>(null);
 
+
 	const handleInputChange = (type: 'objectif' | 'members' | 'budget' | 'date', e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const inputValue = e.target.value;
 
