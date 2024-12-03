@@ -1,4 +1,5 @@
 @use "cosmose";
+@import 'react-tooltip/dist/react-tooltip.css';
 
 @tailwind base;
 @tailwind components;
@@ -34,7 +35,7 @@ input, select {
   background-color: rgb(var(--theme-50));
 }
 
-input:focus, select:focus {
+textarea:focus, input:focus, select:focus, button:focus {
   outline: none;
 }
 
@@ -89,6 +90,13 @@ $increment: 0.3;
   animation: SlideOutUp .5s ease backwards;
 }
 
+.animate-button-chat {
+  right: -100px;
+  opacity: 0;
+  animation: SlideInRight .2s ease-out forwards 1s;
+  will-change: transform;
+}
+
 @for $i from 1 through 10 {
   .animate-float-#{$i} {
     animation: Float 3s ease-in-out infinite;
@@ -141,5 +149,16 @@ $increment: 0.3;
   }
   100% {
     transform: rotate(1440deg);
+  }
+}
+
+@keyframes SlideInRight {
+  0% {
+    right: -100px;
+    opacity: 0;
+  }
+  100% {
+    right: 40px;
+    opacity: 1;
   }
 }

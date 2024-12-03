@@ -8,6 +8,8 @@ import Footer from '@/components/footer/footer';
 import Wave from '@/components/ui/wave';
 import '@/assets/theme/global.scss';
 import Top from '@/app/top';
+import ButtonChat from '@/components/chat/button';
+import { ChatProvider } from '@/contexts/chat.context';
 
 export const metadata: Metadata = {
 	icons: {
@@ -32,6 +34,9 @@ export default function RootLayout({
 					<Wave/>
 					<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 -z-10 pointer-events-none" alt="Ellipse"/>
 					<img src="svg/ellipse3.svg" height={400} width={600} className="absolute top-32 -left-32 -z-10 pointer-events-none" alt="Ellipse"/>
+					<ChatProvider>
+						<ButtonChat/>
+					</ChatProvider>
 					<main>
 						{children}
 					</main>
