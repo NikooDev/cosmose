@@ -34,12 +34,12 @@ export default function RootLayout({
 					<Wave/>
 					<img src="svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 -z-10 pointer-events-none" alt="Ellipse"/>
 					<img src="svg/ellipse3.svg" height={400} width={600} className="absolute top-32 -left-32 -z-10 pointer-events-none" alt="Ellipse"/>
-					<ChatProvider>
-						<ButtonChat/>
-					</ChatProvider>
 					<main>
 						{children}
 					</main>
+					<ChatProvider>
+						<ButtonChat/>
+					</ChatProvider>
 					<Footer/>
 				</Top>
 			</body>

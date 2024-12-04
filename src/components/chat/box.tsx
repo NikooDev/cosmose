@@ -20,9 +20,9 @@ const ChatBox = () => {
           <path fillOpacity="1" d="M0,160L80,133.3C160,107,320,53,480,64C640,75,800,149,960,165.3C1120,181,1280,139,1360,117.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
         </svg>
         <div className="flex justify-between bg-theme-400 h-16 rounded-t-3xl px-4 py-4">
-          <p className="font-NexaHeavy text-3xl ml-2 select-none">Bonjour !
-            <span className="inline-flex ml-3 relative top-1">
-              <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/12.1.1/72x72/1f44b.png" width={31} height={31} alt="👋" className="emoji"/>
+          <p className="font-NexaHeavy text-2xl ml-2 select-none">Bonjour !
+            <span className="inline-flex ml-2 relative top-1">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/12.1.1/72x72/1f44b.png" width={24} height={24} alt="👋" className="emoji"/>
             </span>
           </p>
           <div className="flex gap-1 items-center mt-2">
