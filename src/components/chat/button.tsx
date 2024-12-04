@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useChatContext, useChatDispatch } from '@/contexts/chat.context';
 import ChatBox from '@/components/chat/box';
 import Class from 'classnames';
-import { useChatContext, useChatDispatch } from '@/contexts/chat.context';
 
 const ButtonChat = () => {
 	const [isVisible, setIsVisible] = useState<boolean>(false);
+	const popRef = useRef<HTMLAudioElement>(null);
 	const { show } = useChatContext();
 	const dispatch = useChatDispatch();
 
@@ -16,17 +17,21 @@ const ButtonChat = () => {
 	}, [dispatch, show]);
 
 	useEffect(() => {
-		if (show) {
+		if (show && popRef.current) {
 			setIsVisible(true);
+			popRef.current.play().then();
 		} else if (isVisible) {
 			setTimeout(() => {
 				setIsVisible(false);
 			}, 300)
 		}
-	}, [show, isVisible]);
+	}, [show, popRef, isVisible]);
 
   return (
 		<>
+			<audio ref={popRef}>
+				<source src="/sons/pop.mp3" type="audio/mpeg"/>
+			</audio>
 			<div className="fixed bottom-10 z-30 animate-button-chat ease-in-out" style={{
 				inset: 'auto 0px 0px auto',
 				width: '370px',
@@ -37,9 +42,11 @@ const ButtonChat = () => {
 			}}>
 				<AnimatePresence>
 					{show && (
-						<motion.div className="h-full w-full" initial={{transform: 'translateX(0)', opacity: 0}} animate={{transform: 'translateX(-20px)', opacity: 1}} transition={{
-							duration: .3,
-							ease: 'easeOut'
+						<motion.div className="h-full w-full" initial={{
+							transform: 'translateX(0)',
+							opacity: 0
+						}} animate={{transform: 'translateX(-20px)', opacity: 1}} transition={{
+							duration: .3, ease: 'easeOut'
 						}} exit={{transform: 'translateX(0)', opacity: 0}}>
 							<ChatBox/>
 						</motion.div>
