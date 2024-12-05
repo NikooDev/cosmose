@@ -9,6 +9,8 @@ import Button from '@/components/ui/button';
 import Link from 'next/link';
 import Class from 'classnames';
 import Loader from '@/components/ui/loader';
+import { toRelativeDate } from '@/utils/functions';
+import { DateTime } from 'luxon';
 
 const ChatBox = () => {
   const [rows, setRows] = useState(1);
@@ -67,13 +69,10 @@ const ChatBox = () => {
     <div className="absolute rounded-b-3xl h-[650px] w-[370px] overflow-hidden bottom-16 right-0" style={{
       maxHeight: 'calc(100% - 47px)', display: 'flex', flexDirection: 'column'
     }}>
-      <div style={{
+      <div className="bg-theme-400 rounded-t-3xl" style={{
         flex: '1 1 0', minHeight: 0, display: 'flex', flexDirection: 'column', inset: 0
       }}>
-        <svg xmlns="http://www.w3.org/2000/svg" className="absolute bottom-0 top-16 left-0 w-full fill-theme-400" viewBox="0 0 1440 320">
-          <path fillOpacity="1" d="M0,160L80,133.3C160,107,320,53,480,64C640,75,800,149,960,165.3C1120,181,1280,139,1360,117.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
-        </svg>
-        <div className="flex justify-between bg-theme-400 h-16 w-full rounded-t-3xl px-4 py-4 relative">
+        <div className="flex justify-between h-16 w-full px-4 py-4 relative">
           <p className="font-NexaHeavy text-2xl ml-2 select-none">Bonjour !
             <span className="inline-flex ml-2 relative top-1">
               <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/12.1.1/72x72/1f44b.png" width={24} height={24} alt="👋" className="emoji"/>
@@ -104,6 +103,10 @@ const ChatBox = () => {
               background: 'rgba(var(--theme-600))', borderRadius: 10, fontFamily: 'var(--nexa-heavy)'
             }}/>
           </div>
+        </div>
+        <div className="px-6 pb-4">
+          <p className="font-NexaHeavy">Des questions ? Discutons !</p>
+          <p className="font-bold text-sm">Nos conseillers sont disponibles pour vous renseigner.</p>
         </div>
         {loadingRecover ? (
           <div className="bg-theme-50 flex px-4 justify-center items-center w-full h-full max-h-full" style={{flex: '0 1 auto'}}>
@@ -155,8 +158,15 @@ const ChatBox = () => {
                 ) : (
                   <div className="flex flex-col w-full">
                     {messages.map((message, index) => (
-                      <motion.div key={index} initial={{transform: message.isClient ? 'translateX(100%)' : 'translateX(-100%)'}} animate={{transform: 'translateX(0)'}} className={Class('px-4 py-2 max-w-72 rounded-2xl', message.isClient ? 'self-end' : 'self-start bg-white')}>
-                        <p className="text-slate-800 font-bold">{message.message}</p>
+                      <motion.div key={index} initial={{transform: message.isClient ? 'translateX(100%)' : 'translateX(-100%)'}} animate={{transform: 'translateX(0)'}}>
+                        <div className={Class('px-4 py-2 max-w-72 rounded-2xl', message.isClient ? 'self-end' : 'self-start bg-white')}>
+                          <p className="text-slate-800 font-bold text-sm whitespace-break-spaces">{message.message}</p>
+                        </div>
+                        <div className="flex items-center mt-1 ml-2">
+                          <p className="text-xs text-slate-800 font-bold">{!message.isClient && 'Cosmose'}</p>
+                          <span className="text-xs text-slate-800 font-bold mx-1">•</span>
+                          <p className="text-xs text-slate-800 font-bold">{toRelativeDate(message.created as DateTime)}</p>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -173,7 +183,7 @@ const ChatBox = () => {
                 flex: '0 0 auto',
                 paddingBottom: '1.1rem'
               }}>
-              <textarea rows={rows} placeholder="Votre message"
+              <textarea rows={rows} placeholder="Votre message" autoFocus
                         onInput={handleInput}
                         className="w-full resize-none px-4 text-slate-800 text-[17px] font-bold"/>
               </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { collection, query, where, onSnapshot, addDoc, getDocs, orderBy } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, addDoc, getDocs, orderBy, Timestamp } from 'firebase/firestore';
 import { signInAnonymously, signOut, updateEmail } from 'firebase/auth';
 import { ConversationInterface, MessageInterface } from '@/types/chat';
 import { auth, db } from '@/config/firebase';
@@ -102,10 +102,15 @@ const useChat = () => {
 		const q = query(messagesRef, orderBy('created', 'asc'));
 
 		const unsubscribe = onSnapshot(q, async (snapshot) => {
-			const messagesData = snapshot.docs.map((doc) => ({
-				uid: doc.id,
-				...doc.data(),
-			})) as MessageInterface[];
+			const messagesData = snapshot.docs.map((doc) => {
+				const data = doc.data() as MessageInterface;
+
+				return {
+					...data,
+					uid: doc.id,
+					created: transformDate(data.created as DateTime | Timestamp)
+				};
+			}) as MessageInterface[];
 
 			setMessages(messagesData);
 
@@ -144,6 +149,20 @@ const useChat = () => {
 		const regex = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
 		return regex.test(email);
 	};
+
+	const transformDate = (date: DateTime | Timestamp): DateTime => {
+		if (!date) {
+			throw new Error('Date is null or undefined.');
+		}
+
+		if (typeof date === 'object' && 'seconds' in date) {
+			return DateTime.fromSeconds(date.seconds);
+		} else if (DateTime.isDateTime(date)) {
+			return date;
+		} else {
+			throw new Error('Invalid date type: Expected a Timestamp or DateTime.');
+		}
+	}
 
 	/*useEffect(() => {
 		let unsubscribe: () => void;
