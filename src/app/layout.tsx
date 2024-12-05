@@ -1,15 +1,15 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
+import { ChatProvider } from '@/contexts/chat.context';
 import localFont from 'next/font/local';
 import Header from '@/components/header/header';
 import Class from 'classnames';
 import Footer from '@/components/footer/footer';
 import Wave from '@/components/ui/wave';
-import '@/assets/theme/global.scss';
 import Top from '@/app/top';
-import ButtonChat from '@/components/chat/button';
-import { ChatProvider } from '@/contexts/chat.context';
+import Chat from '@/components/chat/chat';
+import '@/assets/theme/global.scss';
 
 export const metadata: Metadata = {
 	icons: {
@@ -38,7 +38,7 @@ export default function RootLayout({
 						{children}
 					</main>
 					<ChatProvider>
-						<ButtonChat/>
+						<Chat/>
 					</ChatProvider>
 					<Footer/>
 				</Top>

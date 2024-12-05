@@ -17,6 +17,10 @@ $duration: 1.5s;
   animation: dash $duration ease-in-out infinite, colors (calc($duration*4)) ease-in-out infinite;
 }
 
+.theme svg circle {
+  stroke: rgb(75 46 219)!important;
+}
+
 @keyframes colors {
   0% { stroke: rgb(232 229 251); }
   30% { stroke: rgb(232 229 251); }
