@@ -25,7 +25,7 @@ const ChatBox = () => {
 
   useEffect(() => {
     if (!isRegistered && emailRef.current) {
-      setTimeout(() => emailRef.current && emailRef.current.focus(), 300);
+      setTimeout(() => emailRef.current && emailRef.current.focus(), 500);
     }
   }, [isRegistered, emailRef]);
 
@@ -127,13 +127,13 @@ const ChatBox = () => {
                   <form method="post" onSubmit={(event) => handleLogin(event, email)} className="flex flex-col w-full px-4 py-2">
                     <p className="text-slate-800 text-center font-NexaHeavy mb-3">Pour commencer à discuter, renseignez
                       votre adresse e-mail.</p>
-                    <input type="text" ref={emailRef} onChange={handleChange} placeholder="Adresse e-mail" className={Class('bg-white shadow-md rounded-3xl w-full h-10 px-4 font-bold text-slate-800 border-2 transition-all duration-200', errorEmail ? 'border-red-500' : 'border-white')}/>
+                    <input type="text" autoFocus ref={emailRef} onChange={handleChange} placeholder="Adresse e-mail" className={Class('bg-white shadow-md rounded-3xl w-full h-10 px-4 font-bold text-slate-800 border-2 transition-all duration-200', errorEmail ? 'border-red-500' : 'border-white')}/>
                     <p className="text-sm text-center font-bold text-slate-800 my-4">En cliquant
                       sur <span className="font-NexaHeavy">Connexion</span>, vous acceptez
                       notre <Link href="/confidentialite" className="underline">Politique de confidentialité</Link>.</p>
                     <div className="flex gap-2 self-end items-center">
                       <Button data-tooltip-id="chat-info"
-                              data-tooltip-content="Votre adresse e-mail est uniquement utilisée pour conserver l’historique de vos échanges."
+                              data-tooltip-content="Votre adresse e-mail permet de sauvegarder vos échanges."
                               data-tooltip-place="bottom"
                               className="h-9 mt-0 text-theme-400 flex items-center justify-center bg-transparent">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height={36} width={36} viewBox="0 0 24 24">
