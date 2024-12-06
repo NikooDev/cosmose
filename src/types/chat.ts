@@ -15,6 +15,7 @@ export interface ConversationInterface {
 	client: string;
 	badgeAdmin: number;
 	badgeClient: number;
+	sound: boolean;
 	created: DateTime | Date;
 }
 

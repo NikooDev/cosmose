@@ -1,22 +1,27 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { DateTime } from 'luxon';
 import { Tooltip } from 'react-tooltip'
 import { useChatDispatch } from '@/contexts/chat.context';
 import { AnimatePresence, motion } from 'framer-motion';
+import { MenuItem, useClick, ControlledMenu, useMenuState } from '@szhsin/react-menu';
+import { toRelativeDate } from '@/utils/functions';
 import useChat from '@/hooks/useChat';
 import Button from '@/components/ui/button';
 import Link from 'next/link';
 import Class from 'classnames';
 import Loader from '@/components/ui/loader';
-import { toRelativeDate } from '@/utils/functions';
-import { DateTime } from 'luxon';
 
 const ChatBox = () => {
   const [rows, setRows] = useState(1);
   const [email, setEmail] = useState<string | null>(null);
-  const { isRegistered, messages, errorEmail, loading, loadingRecover, popRef, handleRecover, handleLogin, setErrorEmail, setIsRegistered, setLoadingRecover } = useChat();
+  const [tooltipOptions, setTooltipOptions] = useState(false);
+  const [menuState, toggleMenu] = useMenuState({ transition: true });
+  const anchorProps = useClick(menuState.state, toggleMenu);
+  const { isRegistered, messages, errorEmail, loading, loadingRecover, popRef, soundOff, handleSound, handleRecover, handleLogin, handleLogout, setErrorEmail, setIsRegistered, setLoadingRecover } = useChat();
   const emailRef = useRef<HTMLInputElement>(null);
+  const optionsRef = useRef(null);
   const dispatch = useChatDispatch();
 
   const handleClose = useCallback(() => {
@@ -79,14 +84,49 @@ const ChatBox = () => {
             </span>
           </p>
           <div className="flex gap-1 items-center mt-2">
-            <button data-tooltip-id="chat-options"
-                    data-tooltip-content="Options"
-                    data-tooltip-place="bottom"
-                    className="text-white h-10 w-10 rounded-full justify-center items-center hover:bg-theme-600 inline-flex transition-colors duration-200">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height={28} width={28} viewBox="0 0 24 24">
-                <path xmlns="http://www.w3.org/2000/svg" d="M10,6a2,2,0,1,1,2,2A2,2,0,0,1,10,6Zm2,4a2,2,0,1,0,2,2A2,2,0,0,0,12,10Zm0,6a2,2,0,1,0,2,2A2,2,0,0,0,12,16Z"/>
-              </svg>
-            </button>
+            {
+              isRegistered && (
+                <>
+                  <button {...anchorProps}
+                          ref={optionsRef}
+                          data-tooltip-id="chat-options"
+                          data-tooltip-content="Options"
+                          data-tooltip-place="bottom"
+                          onMouseEnter={() => menuState.state === 'closed' ? setTooltipOptions(true) : setTooltipOptions(false)}
+                          onMouseLeave={() => setTooltipOptions(false)}
+                          onClickCapture={() => setTooltipOptions(false)}
+                          className={Class('text-white h-10 w-10 rounded-full justify-center items-center hover:bg-theme-600 inline-flex transition-colors duration-200', menuState.state === 'open' && 'bg-theme-600')}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height={28} width={28} viewBox="0 0 24 24">
+                      <path xmlns="http://www.w3.org/2000/svg" d="M10,6a2,2,0,1,1,2,2A2,2,0,0,1,10,6Zm2,4a2,2,0,1,0,2,2A2,2,0,0,0,12,10Zm0,6a2,2,0,1,0,2,2A2,2,0,0,0,12,16Z"/>
+                    </svg>
+                  </button>
+                  <ControlledMenu {...menuState} anchorRef={optionsRef} onClose={() => toggleMenu(false)}
+                                  arrow align="end" gap={2} direction="bottom" className="rounded-2xl" transition>
+                    <MenuItem onClick={handleSound} className="font-bold">
+                      <span className="mr-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height={22} width={22} viewBox="0 0 24 24">
+                          {
+                            !soundOff ? (
+                              <path xmlns="http://www.w3.org/2000/svg" d="M13,5V19a1,1,0,0,1-1,1h-.59a1,1,0,0,1-.7-.29L6.88,15.88A3,3,0,0,0,4.76,15h0A1.76,1.76,0,0,1,3,13.24V10.76A1.76,1.76,0,0,1,4.76,9a3,3,0,0,0,2.12-.88l3.83-3.83a1,1,0,0,1,.7-.29H12A1,1,0,0,1,13,5Zm6,1.73a.58.58,0,0,0-.36-.17.5.5,0,0,0-.37.15l-.71.71a.5.5,0,0,0,0,.68,6,6,0,0,1,0,7.8.5.5,0,0,0,0,.68l.71.71a.5.5,0,0,0,.37.15.56.56,0,0,0,.36-.17A8,8,0,0,0,19,6.73ZM15.84,9.4a.53.53,0,0,0-.39.15l-.71.72a.5.5,0,0,0-.07.63,2,2,0,0,1,0,2.2.5.5,0,0,0,.07.63l.71.72a.52.52,0,0,0,.39.14.52.52,0,0,0,.37-.19,4,4,0,0,0,0-4.8A.57.57,0,0,0,15.84,9.4Z"/>
+                            ) : (
+                              <path d="M19.85,19.32l-.53.53a.48.48,0,0,1-.7,0L15,16.24V19a1,1,0,0,1-1,1h-.59a1,1,0,0,1-.7-.29L8.88,15.88A3,3,0,0,0,6.76,15h0A1.76,1.76,0,0,1,5,13.24V10.76A1.76,1.76,0,0,1,6.76,9h0a3.16,3.16,0,0,0,.86-.14L4.15,5.38a.48.48,0,0,1,0-.7l.53-.53a.48.48,0,0,1,.7,0L19.85,18.62A.48.48,0,0,1,19.85,19.32ZM15,5a1,1,0,0,0-1-1h-.59a1,1,0,0,0-.7.29L10.36,6.64,15,11.29Z"/>
+                            )
+                          }
+                        </svg>
+                      </span>
+                      <span>{soundOff ? 'Désactiver le son' : 'Activer le son'}</span>
+                    </MenuItem>
+                    <MenuItem onClick={handleLogout} className="font-bold">
+                      <span className="mr-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height={22} width={22} viewBox="0 0 24 24">
+                          <path xmlns="http://www.w3.org/2000/svg" d="M11,13.5V3.5a.5.5,0,0,1,.5-.5h1a.5.5,0,0,1,.5.5v10a.5.5,0,0,1-.5.5h-1A.5.5,0,0,1,11,13.5Zm7-5.77a.53.53,0,0,0-.36-.17.51.51,0,0,0-.37.15l-.71.71a.51.51,0,0,0,0,.68A5.92,5.92,0,0,1,18,13,6,6,0,0,1,6,13,5.92,5.92,0,0,1,7.45,9.1a.51.51,0,0,0,0-.68l-.71-.71a.51.51,0,0,0-.37-.15A.53.53,0,0,0,6,7.73a8,8,0,1,0,12,0Z"/>
+                        </svg>
+                      </span>
+                      <span>Quitter la session</span>
+                    </MenuItem>
+                  </ControlledMenu>
+                </>
+              )}
             <button onClick={() => handleClose()}
                     data-tooltip-id="chat-close"
                     data-tooltip-content="Minimiser"
@@ -99,7 +139,7 @@ const ChatBox = () => {
             <Tooltip id="chat-close" offset={12} style={{
               background: 'rgba(var(--theme-600))', borderRadius: 10, fontFamily: 'var(--nexa-heavy)'
             }}/>
-            <Tooltip id="chat-options" offset={12} style={{
+            <Tooltip id="chat-options" isOpen={tooltipOptions} offset={12} style={{
               background: 'rgba(var(--theme-600))', borderRadius: 10, fontFamily: 'var(--nexa-heavy)'
             }}/>
           </div>
@@ -124,7 +164,7 @@ const ChatBox = () => {
             }}>
               <AnimatePresence>
                 {!isRegistered ? (
-                  <form method="post" onSubmit={(event) => handleLogin(event, email)} className="flex flex-col w-full px-4 py-2">
+                  <form method="post" onSubmit={(event) => handleLogin(event, email ? email.toLowerCase() : null)} className="flex flex-col w-full px-4 py-2">
                     <p className="text-slate-800 text-center font-NexaHeavy mb-3">Pour commencer à discuter, renseignez
                       votre adresse e-mail.</p>
                     <input type="text" autoFocus ref={emailRef} onChange={handleChange} placeholder="Adresse e-mail" className={Class('bg-white shadow-md rounded-3xl w-full h-10 px-4 font-bold text-slate-800 border-2 transition-all duration-200', errorEmail ? 'border-red-500' : 'border-white')}/>

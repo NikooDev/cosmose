@@ -12,10 +12,12 @@ const firebaseConfig = {
 	measurementId: 'G-H6KRMG8PVX'
 };
 
+const passwordAuth = 'A8z!3pL#Q9d@jVkT&X2mG7Yw*5oR6cB$ZqW1yFgH^D4nJsP@vMtK&L#X9d@2oRq5Y7pL3z!8xT';
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 export {
-	app, auth, db
+	app, auth, db, passwordAuth
 }

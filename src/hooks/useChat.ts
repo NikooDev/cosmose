@@ -1,10 +1,10 @@
 'use client';
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { collection, query, where, onSnapshot, addDoc, getDocs, orderBy, Timestamp } from 'firebase/firestore';
-import { signInAnonymously, signOut, updateEmail } from 'firebase/auth';
+import { collection, query, where, onSnapshot, addDoc, getDocs, setDoc, updateDoc, doc, orderBy, Timestamp, Unsubscribe } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { ConversationInterface, MessageInterface } from '@/types/chat';
-import { auth, db } from '@/config/firebase';
+import { auth, db, passwordAuth } from '@/config/firebase';
 import toast from 'react-hot-toast';
 import { DateTime } from 'luxon';
 
@@ -12,6 +12,8 @@ const useChat = () => {
 	const [messages, setMessages] = useState<MessageInterface[]>([]);
 	const [message, setMessage] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
+	const [soundOff, setSoundOff] = useState<boolean>(true);
+	const [unsubscribe, setUnsubscribe] = useState<Unsubscribe | undefined>();
 	const [loadingRecover, setLoadingRecover] = useState<boolean>(true);
 	const [conversationUID, setConversationUID] = useState<string | null>(null);
 	const [userUID, setUserUID] = useState<string | null>(null);
@@ -29,6 +31,7 @@ const useChat = () => {
 			const data = existingConversation.data() as ConversationInterface;
 			setConversationUID(existingConversation.id);
 			setIsRegistered(data.clientUID === userID);
+			setSoundOff(data.sound);
 			setUserUID(userID);
 			setLoadingRecover(false);
 		} else {
@@ -50,49 +53,69 @@ const useChat = () => {
 		setLoading(true);
 
 		try {
-			const userCredential = await signInAnonymously(auth);
-			const user = userCredential.user;
-
-			await updateEmail(user, email);
-
-			setUserUID(user.uid);
-
 			const conversationRef = collection(db, 'conversations');
-			const q = query(conversationRef, where('client', '==', email));
+			const q = query(conversationRef, where('client', '==', email.toLowerCase()));
 			const snapshot = await getDocs(q);
 
 			let conversationId: string;
 
 			if (snapshot.empty) {
+				const userCredential = await createUserWithEmailAndPassword(auth, email, passwordAuth);
+				const user = userCredential.user;
+
+				setUserUID(user.uid);
+
 				const newConversation = await addDoc(conversationRef, {
-					uid: conversationRef.id,
 					clientUID: user.uid,
 					client: email.trim(),
 					badgeAdmin: 0,
+					sound: true,
 					badgeClient: 0,
 					created: DateTime.now().toJSDate()
 				} as ConversationInterface);
 
+				await updateDoc(newConversation, {
+					uid: newConversation.id
+				});
+
 				conversationId = newConversation.id;
+				setConversationUID(conversationId);
 
 				await handleMessage('Bienvenue sur le Chat Cosmose !\nEn quoi puis-je vous aider ?', false, conversationId);
 
+				localStorage.setItem('session', user.uid);
 				setIsRegistered(true);
 			} else {
 				const existingConversation = snapshot.docs[0];
 				conversationId = existingConversation.id;
 				const data = existingConversation.data() as ConversationInterface;
 
+				await signInWithEmailAndPassword(auth, data.client, passwordAuth);
+
+				setSoundOff(data.sound);
+				setConversationUID(conversationId);
+
+				localStorage.setItem('session', data.clientUID);
+				setUserUID(data.clientUID);
 				setIsRegistered(data.client === email);
 			}
 
-			localStorage.setItem('session', user.uid);
-
-			setConversationUID(conversationId);
 			setLoading(false);
 		} catch (e) {
 			console.error('Erreur lors de l’authentification:', e);
+			setLoading(false);
 		}
+	}
+
+	const handleSound = async () => {
+		if (!conversationUID) return;
+
+		setSoundOff((prevState) => !prevState);
+		const conversationRef = doc(db, 'conversations', conversationUID);
+
+		await updateDoc(conversationRef, {
+			sound: !soundOff
+		})
 	}
 
 	const onMessages = useCallback(() => {
@@ -101,7 +124,11 @@ const useChat = () => {
 		const messagesRef = collection(db, 'conversations', conversationUID, 'messages');
 		const q = query(messagesRef, orderBy('created', 'asc'));
 
-		const unsubscribe = onSnapshot(q, async (snapshot) => {
+		if (unsubscribe) {
+			unsubscribe();
+		}
+
+		const unsubscribeFn = onSnapshot(q, async (snapshot) => {
 			const messagesData = snapshot.docs.map((doc) => {
 				const data = doc.data() as MessageInterface;
 
@@ -112,37 +139,55 @@ const useChat = () => {
 				};
 			}) as MessageInterface[];
 
-			setMessages(messagesData);
-
-			if (popRef.current) {
-				await popRef.current.play();
+			if (soundOff) {
+				if (messagesData.length > 0) {
+					if (popRef.current) {
+						await popRef.current.play();
+					}
+				}
 			}
+
+			setMessages(messagesData);
 		});
 
-		return () => unsubscribe();
-	}, [conversationUID, popRef]);
+		setUnsubscribe(() => unsubscribeFn);
 
-	useEffect(() => onMessages(), [onMessages]);
+		return () => unsubscribeFn();
+	}, [conversationUID, soundOff, popRef]);
+
+	useEffect(() => {
+		if (conversationUID) {
+			onMessages();
+		}
+	}, [conversationUID, onMessages]);
 
 	const handleMessage = async (message: string, isBot: boolean, conversationID: string) => {
 		try {
 			const messagesRef = collection(db, 'conversations', conversationID, 'messages');
 
-			await addDoc(messagesRef, {
-				uid: messagesRef.id,
+			const newMessage = await addDoc(messagesRef, {
 				message,
 				isClient: isBot,
 				read: false,
 				created: DateTime.now().toJSDate()
 			} as MessageInterface);
+
+			await updateDoc(newMessage, {
+				uid: newMessage.id
+			});
 		} catch (error) {
 			console.error('Erreur lors de l’envoi du message:', error);
 		}
 	}
 
 	const handleLogout = async () => {
-		localStorage.removeItem('session');
+		if (unsubscribe) {
+			unsubscribe();
+		}
+
 		await signOut(auth);
+		localStorage.removeItem('session');
+		setIsRegistered(false);
 	}
 
 	const validateEmail = (email: string) => {
@@ -268,6 +313,7 @@ const useChat = () => {
 		loading,
 		loadingRecover,
 		popRef,
+		soundOff,
 		setErrorEmail,
 		setLoadingRecover,
 		setIsRegistered,
@@ -275,7 +321,8 @@ const useChat = () => {
 		handleLogin,
 		handleMessage,
 		handleLogout,
-		handleRecover
+		handleRecover,
+		handleSound
 	};
 }
 
