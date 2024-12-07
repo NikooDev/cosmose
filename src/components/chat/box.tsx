@@ -107,7 +107,7 @@ const ChatBox = () => {
                           data-tooltip-id="chat-options"
                           data-tooltip-content="Options"
                           data-tooltip-place="bottom"
-                          onMouseEnter={() => menuState.state === 'closed' ? setTooltipOptions(true) : setTooltipOptions(false)}
+                          onMouseEnter={() => (menuState.state === 'closed' || !menuState.state) ? setTooltipOptions(true) : setTooltipOptions(false)}
                           onMouseLeave={() => setTooltipOptions(false)}
                           onClickCapture={() => setTooltipOptions(false)}
                           className={Class('text-white h-10 w-10 rounded-full justify-center items-center hover:bg-theme-600 inline-flex transition-colors duration-200', menuState.state === 'open' && 'bg-theme-600')}>
@@ -159,7 +159,7 @@ const ChatBox = () => {
             }}/>
           </div>
         </div>
-        <div className="px-6 pb-4 border-b-2 border-white">
+        <div className="px-6 pb-4 border-b-2 border-white select-none">
           <p className="font-NexaHeavy">Des questions ? Discutons !</p>
           <p className="font-bold text-sm">Nos conseillers sont disponibles pour vous renseigner.</p>
         </div>
@@ -215,20 +215,18 @@ const ChatBox = () => {
                 ) : (
                   <div className="flex flex-col w-full">
                     {messages.map((message, index) => (
-                      <motion.div key={index} className={Class('mb-3', message.isClient ? 'self-end ' : 'self-start')} initial={{transform: message.isClient ? 'translateX(100%)' : 'translateX(-100%)'}} animate={{transform: 'translateX(0)'}}>
-                        <div className={Class('px-4 py-2 max-w-72 min-w-32 rounded-2xl', message.isClient ? 'bg-theme-500 ' : 'bg-white')}>
-                          <p className={Class('font-bold text-sm whitespace-break-spaces', message.isClient ? 'text-theme-50' : 'text-slate-800')}>{message.message}</p>
-                        </div>
-                        <div className={Class('flex items-center mt-1 ml-2 mr-2', message.isClient ? 'justify-end' : 'justify-start')}>
-                          {
-                            !message.isClient && (
+                      <motion.div key={index} className={Class('flex flex-col', (index !== messages.length - 1) && 'mb-3', message.isClient ? 'self-end ' : 'self-start')} initial={{transform: message.isClient ? 'translateX(100%)' : 'translateX(-100%)'}} animate={{transform: 'translateX(0)'}}>
+                        <div className={Class('px-4 py-2 max-w-72 min-w-4 rounded-2xl shadow-md', message.isClient ? 'bg-theme-500 ml-auto' : 'bg-white mr-auto')}>
+                          <p className={Class('font-bold text-base whitespace-break-spaces', message.isClient ? 'text-white text-right' : 'text-slate-800 text-left')}>{message.message}</p>
+                          <div className={Class('flex items-center mt-2', message.isClient ? 'justify-end' : 'justify-start')}>
+                            {!message.isClient && (
                               <>
-                                <p className="text-xs text-slate-800 font-bold">Cosmose</p>
-                                <span className="text-xs text-slate-800 font-bold mx-1">•</span>
+                                <p className="text-xs text-theme-800 font-bold">Cosmose</p>
+                                <span className="text-xs text-theme-800 font-bold mx-1">•</span>
                               </>
-                            )
-                          }
-                          <p className="text-xs text-slate-800 font-bold">{toRelativeDate(message.created as DateTime)}</p>
+                            )}
+                            <p className={Class('text-xs font-bold', !message.isClient ? 'text-slate-800' : 'text-white')}>{toRelativeDate(message.created as DateTime)}</p>
+                          </div>
                         </div>
                       </motion.div>
                     ))}
@@ -249,6 +247,10 @@ const ChatBox = () => {
               <textarea rows={rows} ref={textareaRef} placeholder="Votre message" autoFocus
                         onInput={handleInput}
                         value={message ? message : ''}
+                        style={{
+                          scrollbarColor: 'rgb(176 171 202) rgba(0, 0, 0, 0)',
+                          scrollbarWidth: 'thin'
+                        }}
                         className="w-full resize-none pl-4 pr-16 text-slate-800 text-[17px] font-bold"/>
                 <button onClick={() => message ? handleSubmit() : textareaRef.current && textareaRef.current.focus()} className="absolute right-4 text-theme-400">
                   <svg xmlns="http://www.w3.org/2000/svg" height={28} width={28} fill="currentColor" className="mr-0.5" viewBox="0 0 24 24">
