@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { collection, query, where, onSnapshot, addDoc, getDocs, setDoc, updateDoc, doc, orderBy, Timestamp, Unsubscribe } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, addDoc, getDocs, updateDoc, doc, orderBy, Timestamp, Unsubscribe } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { ConversationInterface, MessageInterface } from '@/types/chat';
 import { auth, db, passwordAuth } from '@/config/firebase';
@@ -161,13 +161,13 @@ const useChat = () => {
 		}
 	}, [conversationUID, onMessages]);
 
-	const handleMessage = async (message: string, isBot: boolean, conversationID: string) => {
+	const handleMessage = async (message: string, isClient: boolean, conversationID: string) => {
 		try {
 			const messagesRef = collection(db, 'conversations', conversationID, 'messages');
 
 			const newMessage = await addDoc(messagesRef, {
 				message,
-				isClient: isBot,
+				isClient,
 				read: false,
 				created: DateTime.now().toJSDate()
 			} as MessageInterface);
@@ -187,6 +187,11 @@ const useChat = () => {
 
 		await signOut(auth);
 		localStorage.removeItem('session');
+		setMessage(null);
+		setConversationUID(null);
+		setUserUID(null);
+		setErrorEmail(false);
+		setMessages([]);
 		setIsRegistered(false);
 	}
 
@@ -209,103 +214,8 @@ const useChat = () => {
 		}
 	}
 
-	/*useEffect(() => {
-		let unsubscribe: () => void;
-
-		const initChat = async () => {
-			const userCredential = await signInAnonymously(auth);
-			const userId = userCredential.user.uid;
-
-			const conversationRef = collection(db, 'conversations');
-			const q = query(conversationRef, where('userId', '==', userId));
-
-			unsubscribe = onSnapshot(q, async (snapshot) => {
-				if (snapshot.empty) {
-					const newConversation = await addDoc(conversationRef, {
-						userId,
-						isRegistered: false,
-						created: new Date()
-					});
-
-					setConversationUID(newConversation.id);
-				} else {
-					const existingConversation = snapshot.docs[0];
-
-					setConversationUID(existingConversation.id);
-					setIsRegistered(existingConversation.data().isRegistered);
-					listenToMessages(existingConversation.id);
-				}
-			});
-		};
-
-		initChat().catch((error) => console.error('Erreur lors de l’initialisation de la conversation:', error));
-
-		return () => {
-			if (unsubscribe) unsubscribe();
-		};
-	}, []);
-
-	const sendMessage = async (conversationUID: string, message: string, isBot = true) => {
-		const messagesRef = collection(db, 'conversations', conversationUID, 'messages');
-
-		await addDoc(messagesRef, {
-			message,
-			createdAt: new Date(),
-			isBot,
-		});
-	};
-
-	const listenToMessages = (conversationUID: string) => {
-		const messagesRef = collection(db, 'conversations', conversationUID, 'messages');
-		const q = query(messagesRef);
-
-		isRegistered && onSnapshot(q, (snapshot) => {
-			const messagesData = snapshot.docs.map((doc) => ({
-				...doc.data() as MessageInterface,
-			}));
-
-			setMessages(messagesData);
-		});
-	};
-
-	const handleSubmitMessage = async (event: FormEvent) => {
-		event.preventDefault();
-
-		if (!message) return;
-
-		if (!conversationUID) {
-			setMessages([...messages, { uid: 0, message: 'Aucune conversation disponible' }] as any);
-			return;
-		}
-
-		if (!isRegistered) {
-			const email = message.trim();
-			if (validateEmail(email)) {
-				const conversationRef = collection(db, 'conversations');
-
-				await addDoc(conversationRef, {
-					isRegistered: true,
-					client: email,
-					uid: conversationRef.id
-				});
-
-				setIsRegistered(true);
-				await sendMessage(conversationUID, 'Vous pouvez maintenant poser vos questions.', true);
-			} else {
-				return toast.error('Votre adresse e-mail est incorrecte.', { id: 'chat-error', position: 'top-right', duration: 3000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', borderRadius: '30px', color: 'rgb(30 41 59)' } });
-			}
-		} else {
-			await sendMessage(conversationUID, message, false);
-		}
-
-		setMessage('');
-	};
-
-	const handleLogout = async () => {
-		await signOut(auth);
-	}*/
-
 	return {
+		conversationUID,
 		messages,
 		message,
 		isRegistered,
