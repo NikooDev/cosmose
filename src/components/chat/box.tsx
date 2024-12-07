@@ -66,7 +66,7 @@ const ChatBox = () => {
   const handleInput = (event: React.FormEvent<HTMLTextAreaElement>) => {
     const textarea = event.target as HTMLTextAreaElement;
     const lineBreaks = textarea.value.split('\n').length;
-    const maxCharsPerLine = Math.floor(textarea.offsetWidth / 9.5);
+    const maxCharsPerLine = Math.floor(textarea.offsetWidth / 10);
     const wrappedLines = Math.ceil(textarea.value.length / maxCharsPerLine);
     const newRows = Math.min(3, Math.max(lineBreaks, wrappedLines));
 
@@ -79,13 +79,14 @@ const ChatBox = () => {
 
     setMessage('');
     setRows(1);
-    textareaRef.current && textareaRef.current.focus();
 
     await handleMessage(message, true, conversationUID);
+
+    textareaRef.current && textareaRef.current.focus();
   }
 
   return (
-    <div className="absolute rounded-b-3xl h-[650px] w-[370px] overflow-hidden bottom-16 right-0" style={{
+    <div className="absolute rounded-b-3xl h-[650px] w-[370px] overflow-hidden bottom-[7.5rem] right-0" style={{
       maxHeight: 'calc(100% - 47px)', display: 'flex', flexDirection: 'column'
     }}>
       <div className="bg-theme-400 rounded-t-3xl" style={{
@@ -248,8 +249,8 @@ const ChatBox = () => {
               <textarea rows={rows} ref={textareaRef} placeholder="Votre message" autoFocus
                         onInput={handleInput}
                         value={message ? message : ''}
-                        className="w-full resize-none px-4 text-slate-800 text-[17px] font-bold"/>
-                <button onClick={handleSubmit} className="absolute right-12 text-theme-400">
+                        className="w-full resize-none pl-4 pr-16 text-slate-800 text-[17px] font-bold"/>
+                <button onClick={() => message ? handleSubmit() : textareaRef.current && textareaRef.current.focus()} className="absolute right-4 text-theme-400">
                   <svg xmlns="http://www.w3.org/2000/svg" height={28} width={28} fill="currentColor" className="mr-0.5" viewBox="0 0 24 24">
                     <path xmlns="http://www.w3.org/2000/svg" d="M21,3.92,15,20.67a.5.5,0,0,1-.47.33h-.16a.51.51,0,0,1-.46-.29l-2.36-5a2,2,0,0,1,.34-2.21l3-3.28a.5.5,0,0,0,0-.69l-.38-.38a.5.5,0,0,0-.69,0l-3.28,3a2,2,0,0,1-2.21.34l-5-2.36A.51.51,0,0,1,3,9.67V9.51A.5.5,0,0,1,3.33,9L20.08,3a.5.5,0,0,1,.52.11l.26.26A.5.5,0,0,1,21,3.92Z"/>
                   </svg>
