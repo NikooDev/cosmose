@@ -16,7 +16,6 @@ const useChat = () => {
 	const [unsubscribe, setUnsubscribe] = useState<Unsubscribe | undefined>();
 	const [loadingRecover, setLoadingRecover] = useState<boolean>(true);
 	const [conversationUID, setConversationUID] = useState<string | null>(null);
-	const [userUID, setUserUID] = useState<string | null>(null);
 	const [errorEmail, setErrorEmail] = useState<boolean>(false);
 	const [isRegistered, setIsRegistered] = useState<boolean>(false);
 	const popRef = useRef<HTMLAudioElement>(null);
@@ -32,7 +31,6 @@ const useChat = () => {
 			setConversationUID(existingConversation.id);
 			setIsRegistered(data.clientUID === userID);
 			setSoundOff(data.sound);
-			setUserUID(userID);
 			setLoadingRecover(false);
 		} else {
 			setLoadingRecover(false);
@@ -62,8 +60,6 @@ const useChat = () => {
 			if (snapshot.empty) {
 				const userCredential = await createUserWithEmailAndPassword(auth, email, passwordAuth);
 				const user = userCredential.user;
-
-				setUserUID(user.uid);
 
 				const newConversation = await addDoc(conversationRef, {
 					clientUID: user.uid,
@@ -96,7 +92,6 @@ const useChat = () => {
 				setConversationUID(conversationId);
 
 				localStorage.setItem('session', data.clientUID);
-				setUserUID(data.clientUID);
 				setIsRegistered(data.client === email);
 			}
 
@@ -189,7 +184,6 @@ const useChat = () => {
 		localStorage.removeItem('session');
 		setMessage(null);
 		setConversationUID(null);
-		setUserUID(null);
 		setErrorEmail(false);
 		setMessages([]);
 		setIsRegistered(false);

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { DateTime } from 'luxon';
 import { Tooltip } from 'react-tooltip'
 import { useChatDispatch } from '@/contexts/chat.context';
@@ -13,7 +13,11 @@ import Link from 'next/link';
 import Class from 'classnames';
 import Loader from '@/components/ui/loader';
 
-const ChatBox = () => {
+const ChatBox = ({
+  handleMouseEnter,
+  handleMouseLeave,
+  chatBoxRef
+}: { handleMouseEnter: () => void, handleMouseLeave: () => void, chatBoxRef: RefObject<HTMLDivElement> }) => {
   const [rows, setRows] = useState(1);
   const [email, setEmail] = useState<string | null>(null);
   const [tooltipOptions, setTooltipOptions] = useState(false);
@@ -75,18 +79,27 @@ const ChatBox = () => {
   };
 
   const handleSubmit = async () => {
-    if (!message || !conversationUID) return;
+    if (!message || !conversationUID || message && message.trim().length === 0) return;
 
     setMessage('');
     setRows(1);
 
-    await handleMessage(message, true, conversationUID);
+    const serializeMessage = message.replace(/\n+/g, '\n').trim();
+
+    await handleMessage(serializeMessage, true, conversationUID);
 
     textareaRef.current && textareaRef.current.focus();
   }
 
+  const handleKeyDown = async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      await handleSubmit();
+    }
+  };
+
   return (
-    <div className="absolute rounded-b-3xl h-[650px] w-[370px] overflow-hidden bottom-[7.5rem] right-0" style={{
+    <div ref={chatBoxRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="absolute rounded-b-3xl h-[650px] w-[370px] overflow-hidden bottom-[7.5rem] right-0" style={{
       maxHeight: 'calc(100% - 47px)', display: 'flex', flexDirection: 'column'
     }}>
       <div className="bg-theme-400 rounded-t-3xl" style={{
@@ -169,7 +182,7 @@ const ChatBox = () => {
           </div>
         ) : (
           <>
-            <div className={Class('bg-theme-50 flex px-4', !isRegistered ? 'justify-center items-center' : 'flex-col-reverse pt-4 pb-4')} style={{
+            <div className={Class('bg-theme-50 flex px-4 relative', !isRegistered ? 'justify-center items-center' : 'flex-col-reverse pt-4 pb-4')} style={{
               height: !isRegistered ? '100%' : '30rem',
               width: '100%',
               overflow: 'hidden auto',
@@ -182,21 +195,15 @@ const ChatBox = () => {
               <AnimatePresence>
                 {!isRegistered ? (
                   <form method="post" onSubmit={(event) => handleLogin(event, email ? email.toLowerCase() : null)} className="flex flex-col w-full px-4 py-2">
-                    <p className="text-slate-800 text-center font-NexaHeavy mb-3">Pour commencer à discuter, renseignez
-                      votre adresse e-mail.</p>
-                    <input type="text" autoFocus ref={emailRef} onChange={handleChange} placeholder="Adresse e-mail" className={Class('bg-white shadow-md rounded-3xl w-full h-10 px-4 font-bold text-slate-800 border-2 transition-all duration-200', errorEmail ? 'border-red-500' : 'border-white')}/>
-                    <p className="text-sm text-center font-bold text-slate-800 my-4">En cliquant
+                    <p className="text-theme-800 text-center font-NexaHeavy mb-3">
+                      Pour commencer à discuter, renseignez votre adresse e-mail.
+                    </p>
+                    <input type="text" autoFocus name="email" ref={emailRef} onChange={handleChange} placeholder="Adresse e-mail" className={Class('bg-white shadow-md rounded-3xl w-full h-10 px-4 font-bold text-slate-800 border-2 transition-all duration-200', errorEmail ? 'border-red-500' : 'border-white')}/>
+                    <p className="text-sm text-center font-bold text-theme-800 my-4">En cliquant
                       sur <span className="font-NexaHeavy">Connexion</span>, vous acceptez
-                      notre <Link href="/confidentialite" className="underline">Politique de confidentialité</Link>.</p>
+                      notre <Link href="/confidentialite" className="underline">Politique de confidentialité</Link>.
+                    </p>
                     <div className="flex gap-2 self-end items-center">
-                      <Button data-tooltip-id="chat-info"
-                              data-tooltip-content="Votre adresse e-mail permet de sauvegarder vos échanges."
-                              data-tooltip-place="bottom"
-                              className="h-9 mt-0 text-theme-400 flex items-center justify-center bg-transparent">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height={36} width={36} viewBox="0 0 24 24">
-                          <path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm1,13.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5v-3a.5.5,0,0,1,.5-.5h1a.5.5,0,0,1,.5.5Zm0-6a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5v-1a.5.5,0,0,1,.5-.5h1a.5.5,0,0,1,.5.5Z"/>
-                        </svg>
-                      </Button>
                       <Button type="submit" disabled={loading || (
                         emailRef.current ? emailRef.current.value.trim().length === 0 || emailRef.current.value.length === 0 : true
                       )} className={Class('px-4 h-9 mt-0 shadow disabled:bg-theme-200 hover:disabled:text-theme-50 hover:bg-white hover:shadow-md transition-all duration-300', loading && 'px-0')}>
@@ -204,20 +211,16 @@ const ChatBox = () => {
                           <Loader className="border-none bg-transparent" height={17} width={17}/>
                         ) : 'Connexion'}
                       </Button>
-                      <Tooltip id="chat-info" style={{
-                        background: 'rgba(var(--theme-600))',
-                        borderRadius: 10,
-                        width: 'calc(100% - 50px)',
-                        fontFamily: 'var(--nexa-heavy)'
-                      }}/>
                     </div>
                   </form>
                 ) : (
                   <div className="flex flex-col w-full">
                     {messages.map((message, index) => (
-                      <motion.div key={index} className={Class('flex flex-col', (index !== messages.length - 1) && 'mb-3', message.isClient ? 'self-end ' : 'self-start')} initial={{transform: message.isClient ? 'translateX(100%)' : 'translateX(-100%)'}} animate={{transform: 'translateX(0)'}}>
+                      <motion.div key={index} className={Class('flex flex-col', (
+                        index !== messages.length - 1
+                      ) && 'mb-3', message.isClient ? 'self-end ' : 'self-start')} initial={{transform: message.isClient ? 'translateX(100%)' : 'translateX(-100%)'}} animate={{transform: 'translateX(0)'}}>
                         <div className={Class('px-4 py-2 max-w-72 min-w-4 rounded-2xl shadow-md', message.isClient ? 'bg-theme-500 ml-auto' : 'bg-white mr-auto')}>
-                          <p className={Class('font-bold text-base whitespace-break-spaces', message.isClient ? 'text-white text-right' : 'text-slate-800 text-left')}>{message.message}</p>
+                          <p className={Class('font-bold text-base whitespace-break-spaces', message.isClient ? 'text-white text-right' : 'text-theme-800 text-left')}>{message.message}</p>
                           <div className={Class('flex items-center mt-2', message.isClient ? 'justify-end' : 'justify-start')}>
                             {!message.isClient && (
                               <>
@@ -225,7 +228,7 @@ const ChatBox = () => {
                                 <span className="text-xs text-theme-800 font-bold mx-1">•</span>
                               </>
                             )}
-                            <p className={Class('text-xs font-bold', !message.isClient ? 'text-slate-800' : 'text-white')}>{toRelativeDate(message.created as DateTime)}</p>
+                            <p className={Class('text-xs font-bold', !message.isClient ? 'text-theme-800' : 'text-white')}>{toRelativeDate(message.created as DateTime)}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -235,7 +238,7 @@ const ChatBox = () => {
               </AnimatePresence>
             </div>
             {isRegistered && (
-              <div className="py-4" style={{
+              <form onSubmit={() => message ? handleSubmit() : textareaRef.current && textareaRef.current.focus()} className="py-4" style={{
                 display: 'flex',
                 width: '100%',
                 background: '#fff',
@@ -246,18 +249,19 @@ const ChatBox = () => {
               }}>
               <textarea rows={rows} ref={textareaRef} placeholder="Votre message" autoFocus
                         onInput={handleInput}
+                        onKeyDown={handleKeyDown}
                         value={message ? message : ''}
                         style={{
                           scrollbarColor: 'rgb(176 171 202) rgba(0, 0, 0, 0)',
                           scrollbarWidth: 'thin'
                         }}
                         className="w-full resize-none pl-4 pr-16 text-slate-800 text-[17px] font-bold"/>
-                <button onClick={() => message ? handleSubmit() : textareaRef.current && textareaRef.current.focus()} className="absolute right-4 text-theme-400">
+                <button type="submit" disabled={!message || message.trim().length === 0} className="absolute right-4 text-theme-400 disabled:text-gray-400">
                   <svg xmlns="http://www.w3.org/2000/svg" height={28} width={28} fill="currentColor" className="mr-0.5" viewBox="0 0 24 24">
                     <path xmlns="http://www.w3.org/2000/svg" d="M21,3.92,15,20.67a.5.5,0,0,1-.47.33h-.16a.51.51,0,0,1-.46-.29l-2.36-5a2,2,0,0,1,.34-2.21l3-3.28a.5.5,0,0,0,0-.69l-.38-.38a.5.5,0,0,0-.69,0l-3.28,3a2,2,0,0,1-2.21.34l-5-2.36A.51.51,0,0,1,3,9.67V9.51A.5.5,0,0,1,3.33,9L20.08,3a.5.5,0,0,1,.52.11l.26.26A.5.5,0,0,1,21,3.92Z"/>
                   </svg>
                 </button>
-              </div>
+              </form>
             )}
           </>
         )}

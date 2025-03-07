@@ -28,8 +28,7 @@ body {
   @apply font-NexaExtraLight;
   color: rgb(var(--theme-50));
   background: rgb(var(--theme-900));
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden auto;
   width: 100vw;
 }
 
@@ -80,6 +79,13 @@ select:hover {
 
 ::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 .szh-menu {

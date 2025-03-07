@@ -58,7 +58,7 @@ const Intro = () => {
 		{ src: '/img/home/image5.jpg', animated: true, width: 193, height: 128, style: { top: '13.5rem', left: '26rem', zIndex: 1 } },
 		{ src: '/img/home/image6.jpg', width: 233, height: 154, style: { top: '12.1rem', left: '7.9rem' } },
 		{ src: '/img/home/image7.jpg', animated: true, width: 294, height: 196, style: { left: '17.5rem', top: '2.5rem' } },
-		{ src: '/img/home/image8.jpg', animated: true, width: 158, height: 105, style: { top: '9.5rem', left: '-3rem' } },
+		{ src: '/img/home/image8.jpg', animated: true, width: 158, height: 105, style: { top: '9.5rem', left: '-3rem' } }
 	];
 
 	useEffect(() => setIsClient(true), []);
@@ -93,14 +93,14 @@ const Intro = () => {
 									<label className="flex mb-1.5 font-NexaHeavy" htmlFor="objectif">Objectif</label>
 									<select id="objectif" className="w-full h-9 text-slate-800 rounded-2xl pl-3 pr-9 appearance-none font-NexaHeavy"
 													onChange={(event) => handleInputChange('objectif', event)}>
-										<option className="text-slate-600">Sélectionner</option>
-										<option>Améliorer la cohésion entre les collaborateurs</option>
-										<option>Facilité l'intégration des nouveaux collaborateurs</option>
-										<option>(Re)Motiver les collaborateurs</option>
-										<option>Apporter de la compétition saine</option>
-										<option>Réduire le sentiment d'isolement</option>
-										<option>Transmettre la culture de l'entreprise</option>
-										<option>Réduire le stress des collaborateurs</option>
+										<option value={0} className="text-slate-600">Sélectionner</option>
+										<option value={1}>Améliorer la cohésion entre les collaborateurs</option>
+										<option value={2}>Facilité l'intégration des nouveaux collaborateurs</option>
+										<option value={3}>(Re)Motiver les collaborateurs</option>
+										<option value={4}>Apporter de la compétition saine</option>
+										<option value={5}>Réduire le sentiment d'isolement</option>
+										<option value={6}>Transmettre la culture de l'entreprise</option>
+										<option value={7}>Réduire le stress des collaborateurs</option>
 									</select>
 									<svg xmlns="http://www.w3.org/2000/svg" height={16} width={16} className="fill-slate-800 absolute right-2.5 top-10 pointer-events-none" viewBox="0 0 24 24">
 										<path d="M20.08,6.83a.5.5,0,0,1,.71,0l1.06,1.06a.48.48,0,0,1,0,.7l-9.19,9.19a.75.75,0,0,1-.53.22h-.26a.75.75,0,0,1-.53-.22L2.15,8.59a.48.48,0,0,1,0-.7L3.21,6.83a.5.5,0,0,1,.71,0L12,14.91Z"/>
