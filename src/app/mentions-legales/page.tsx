@@ -13,7 +13,7 @@ const Legal = () => {
 		<section className="relative z-10 pt-10 pb-10">
 			<Title semantique="h1" titleLight="Mentions" titleBold="Légales" className="mb-10 animate-slideInUp-1"/>
 			<div className="container mx-auto mb-10 animate-slideInUp-2">
-				<h2 className="font-NexaHeavy text-2xl">Éditeur du site</h2>
+				<h2 className="font-NexaHeavy text-2xl">1. Éditeur du site</h2>
 				<p className="text-lg">Le site www.cosmose.com est édité par :</p>
 				<p className="font-NexaHeavy text-lg mt-2">Cosmose</p>
 				<p className="leading-6 mt-2">
@@ -25,11 +25,11 @@ const Legal = () => {
 					Email : support@cosmose.fr<br/>
 					Téléphone : 02 00 00 00 00<br/>
 				</p>
-				<h2 className="font-NexaHeavy text-2xl mt-8">Directeur de la publication</h2>
+				<h2 className="font-NexaHeavy text-2xl mt-8">2. Directeur de la publication</h2>
 				<p className="text-lg">Le directeur de la publication est ..., en qualité de ....</p>
-				<h2 className="font-NexaHeavy text-2xl mt-8">Hébergement</h2>
+				<h2 className="font-NexaHeavy text-2xl mt-8">3. Hébergement</h2>
 				<p className="text-lg">Le site est hébergé par :</p>
-				<h2 className="font-NexaHeavy text-2xl mt-8">Propriété intellectuelle</h2>
+				<h2 className="font-NexaHeavy text-2xl mt-8">4. Propriété intellectuelle</h2>
 				<p className="text-lg">
 					L'ensemble du contenu du site www.cosmose.com, incluant de façon non limitative les textes, images,
 					graphismes, logos, vidéos, sons, icônes, ainsi que leur mise en forme, sont la propriété exclusive de Cosmose
@@ -37,7 +37,7 @@ const Legal = () => {
 					de tout ou partie du contenu du site, sous quelque forme que ce soit, sans autorisation préalable et écrite de
 					Cosmose est interdite et constitue une contrefaçon.
 				</p>
-				<h2 className="font-NexaHeavy text-2xl mt-8">Données personnelles</h2>
+				<h2 className="font-NexaHeavy text-2xl mt-8">5. Données personnelles</h2>
 				<p className="text-lg">
 					Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la
 					Protection des Données (RGPD) du 25 mai 2018, l’utilisateur du site dispose d’un droit d’accès, de
@@ -48,12 +48,12 @@ const Legal = () => {
 					nom, prénom, adresse e-mail, etc.]. Ces données sont utilisées uniquement pour les finalités suivantes :
 					[expliquer les usages des données, par exemple : gestion des demandes, envoi de newsletters, etc.].
 				</p>
-				<h2 className="font-NexaHeavy text-2xl mt-8">Cookies</h2>
+				<h2 className="font-NexaHeavy text-2xl mt-8">6. Cookies</h2>
 				<p className="text-lg">Le site www.cosmose.com utilise des cookies afin d’améliorer l’expérience utilisateur. Un
 					cookie est un petit fichier stocké sur votre terminal (ordinateur, tablette, smartphone). Vous pouvez choisir
 					de désactiver les cookies via les paramètres de votre navigateur. Toutefois, cela pourrait impacter l’accès à
 					certaines fonctionnalités du site.</p>
-				<h2 className="font-NexaHeavy text-2xl mt-8">Responsabilité</h2>
+				<h2 className="font-NexaHeavy text-2xl mt-8">7. Responsabilité</h2>
 				<p className="text-lg">
 					Cosmose s'efforce de fournir des informations exactes et à jour sur le site www.cosmose.com, mais ne peut garantir leur exactitude, leur exhaustivité ou leur actualité. En conséquence, Cosmose décline toute responsabilité en cas d'erreur ou d'omission dans les informations disponibles sur le site.
 					Le site www.cosmose.com peut contenir des liens hypertextes vers d'autres sites. Cosmose n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu ou leur accessibilité.

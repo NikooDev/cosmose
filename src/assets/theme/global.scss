@@ -24,6 +24,10 @@
   scrollbar-width: thin;
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   @apply font-NexaExtraLight;
   color: rgb(var(--theme-50));
