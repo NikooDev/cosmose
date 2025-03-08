@@ -10,6 +10,7 @@ import Wave from '@/components/ui/wave';
 import Top from '@/app/top';
 import Chat from '@/components/chat/chat';
 import '@/assets/theme/global.scss';
+import Error from '@/components/error/error';
 
 export const metadata: Metadata = {
 	icons: {
@@ -39,6 +40,7 @@ export default function RootLayout({
 					</main>
 					<ChatProvider>
 						<Chat/>
+						<Error/>
 					</ChatProvider>
 					<Footer/>
 				</Top>
