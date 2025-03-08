@@ -13,7 +13,7 @@ const Error = () => {
 		const room = searchParams.get('room');
 
 		if (room && room === '0') {
-			toast.error('L\'accès à la plateforme est refusée !\nVeuillez cliquer sur le lien reçu par e-mail pour vous connecter ou contactez le support par chat.', { id: 'room-error', position: 'top-center', duration: 10000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', maxWidth: 500, borderRadius: '15px', color: 'rgb(30 41 59)' } });
+			toast.error('L\'accès à la plateforme est refusé !\nVeuillez cliquer sur le lien reçu par e-mail pour vous connecter ou contactez le support par chat.', { id: 'room-error', position: 'top-center', duration: 10000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', maxWidth: 500, borderRadius: '15px', color: 'rgb(30 41 59)' } });
 			dispatch({ type: 'STATE_CHAT', payload: true });
 		}
 	}, [searchParams]);
