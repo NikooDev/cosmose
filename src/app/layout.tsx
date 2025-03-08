@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
 import { ChatProvider } from '@/contexts/chat.context';
@@ -40,7 +40,9 @@ export default function RootLayout({
 					</main>
 					<ChatProvider>
 						<Chat/>
-						<Error/>
+						<Suspense>
+							<Error/>
+						</Suspense>
 					</ChatProvider>
 					<Footer/>
 				</Top>
