@@ -78,7 +78,9 @@ const ChatBox = ({
     setMessage(textarea.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>) => {
+    event.preventDefault();
+
     if (!message || !conversationUID || message && message.trim().length === 0) return;
 
     setMessage('');
@@ -94,7 +96,7 @@ const ChatBox = ({
   const handleKeyDown = async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      await handleSubmit();
+      await handleSubmit(event);
     }
   };
 
@@ -238,7 +240,7 @@ const ChatBox = ({
               </AnimatePresence>
             </div>
             {isRegistered && (
-              <form onSubmit={() => message ? handleSubmit() : textareaRef.current && textareaRef.current.focus()} className="py-4" style={{
+              <form onSubmit={(event) => message ? handleSubmit(event) : textareaRef.current && textareaRef.current.focus()} className="py-4" style={{
                 display: 'flex',
                 width: '100%',
                 background: '#fff',
