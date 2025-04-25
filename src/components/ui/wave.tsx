@@ -13,7 +13,7 @@ const Wave = () => {
 			offset = 100;
 			break;
 		case '/team-building':
-			offset = 200;
+			offset = 400;
 			break;
 		case '/cosmose':
 			offset = 150;
@@ -31,7 +31,7 @@ const Wave = () => {
 			transition={{duration: .5, ease: 'easeInOut'}}
 			className="absolute left-0 w-full -z-10 will-change-transform"
 		>
-			<motion.img src="svg/wave.svg" alt="Rectangle"/>
+			<motion.img src="/svg/wave.svg" alt="Rectangle"/>
 		</motion.div>
 	);
 }

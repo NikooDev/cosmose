@@ -13,21 +13,13 @@ $duration: 1.5s;
 .path {
   stroke-dasharray: 187;
   stroke-dashoffset: 0;
+  stroke: rgb(197, 188, 244);
   transform-origin: center;
-  animation: dash $duration ease-in-out infinite, colors (calc($duration*4)) ease-in-out infinite;
+  animation: dash $duration ease-in-out infinite;
 }
 
 .theme svg circle {
   stroke: rgb(75 46 219)!important;
-}
-
-@keyframes colors {
-  0% { stroke: rgb(232 229 251); }
-  30% { stroke: rgb(232 229 251); }
-  50% { stroke: rgb(75 46 219); }
-  90% { stroke: rgb(120 98 228); }
-  95% { stroke: rgb(165 151 237); }
-  100% { stroke: rgb(210 203 246); }
 }
 
 @keyframes dash {

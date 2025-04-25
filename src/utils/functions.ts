@@ -31,3 +31,12 @@ export const toRelativeDate = (date: DateTime): string => {
 		return 'À l’instant';
 	}
 }
+
+export const slugify = (str: string) => {
+	return str
+		.normalize("NFD") // décompose les lettres accentuées
+		.replace(/[\u0300-\u036f]/g, "") // supprime les diacritiques
+		.toLowerCase()
+		.replace(/\s+/g, "-") // remplace les espaces par des tirets
+		.replace(/[^\w-]/g, ""); // supprime les caractères spéciaux sauf les tirets
+}
