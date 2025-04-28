@@ -77,8 +77,8 @@ const About = () => {
               <p>Commercial</p>
             </Card>
             <Card className="flex items-center !pb-4">
-              <img src="/img/team/ar.jpg" height={150} width={150} className="rounded-2xl" alt="Arthur"/>
-              <p className="font-NexaHeavy text-lg mt-3">Arthur</p>
+              <img src="/img/team/ar.jpg" height={150} width={150} className="rounded-2xl" alt="Artur"/>
+              <p className="font-NexaHeavy text-lg mt-3">Artur</p>
               <p>Commercial</p>
             </Card>
             <Card className="flex items-center !pb-4">
