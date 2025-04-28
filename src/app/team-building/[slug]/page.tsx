@@ -4,12 +4,12 @@ import {Metadata} from "next";
 import useActivity from "@/hooks/useActivity";
 
 type Props = {
-	params: { slug: string };
-	searchParams: { uid?: string };
-};
+	params: Promise<{ id: string }>
+	searchParams: Promise<{ uid: string }>
+}
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-	const uid = searchParams.uid;
+	const { uid } = await searchParams;
 	const { getActivity } = useActivity();
 
 	let title = 'Cosmose • Chargement...';
