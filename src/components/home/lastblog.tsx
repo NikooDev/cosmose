@@ -41,8 +41,8 @@ const Lastblog = () => {
   return (
 		<section className="w-full flex flex-col mt-36 relative min-h-[600px]">
 			<div className="container mx-auto">
-				<div className="flex gap-36 items-center w-full">
-					<div className="w-[40%]">
+				<div className="flex gap-24 items-center w-full">
+					<div className="w-[50%]">
 						<Title titleLight="Notre blog" titleBold="Dernières actus" semantique="h2" className="!text-left !px-0"/>
 						<p className="text-lg mt-3">Retrouvez nos dernières actualités et les tendances actuelles en matière de team building.</p>
 						<Button type="button" onClick={() => router.push('/blog')} className="px-6">Toute l'actualité</Button>
