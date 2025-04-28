@@ -3,6 +3,7 @@ import { metadata as initialMetadata } from '@/app/layout';
 import { Metadata } from 'next';
 import Title from '@/components/ui/title';
 import Card from '@/components/ui/card';
+import Image from "next/image";
 
 export const metadata: Metadata = {
   ...initialMetadata,
@@ -41,6 +42,66 @@ const About = () => {
               ainsi
               une pause méritée dans leur quotidien professionnel.</p>
           </Card>
+        </div>
+        <div className="mt-16 mb-24 animate-slideInUp-6">
+          <div className="flex items-center gap-14 w-full h-full">
+            <div className="flex flex-col w-1/2">
+              <Title semantique="h2" titleLight="" titleBold="Notre mission..." className="!text-left !px-0 mb-3"/>
+              <p>Cosmose est bien plus qu'une simple plateforme de team building digital,<br/>c'est une véritable passerelle vers une collaboration renouvelée au sein des entreprises modernes.<br/>Notre mission est de rapprocher les équipes, où qu'elles soient en France, à travers des expériences interactives et enrichissantes. Que vos collaborateurs travaillent en télétravail ou soient dispersés géographiquement, nous offrons une solution flexible et innovante pour stimuler la cohésion d'équipe et l'engagement, tout en s'adaptant aux contraintes de temps et de budget des entreprises d'aujourd'hui.</p>
+            </div>
+            <div className="flex w-1/2 h-full">
+              <img src="/img/bg-about.png" alt="About"/>
+            </div>
+          </div>
+          <div className="flex items-center gap-14 w-full mt-14">
+            <div className="flex w-1/2 h-full">
+              <img src="/img/bg-about1.png" alt="About"/>
+            </div>
+            <div className="flex flex-col w-1/2">
+              <Title semantique="h2" titleLight="" titleBold="...Vous rapprocher" className="!text-left !px-0 mb-3"/>
+              <p>Notre gamme d'activités variées, allant des escape games palpitants aux quizz interactifs en passant par des jeux de rôle immersifs, est conçue pour répondre à divers besoins et préférences.<br/>Avec Cosmose, vous pouvez offrir à votre équipe des expériences mémorables qui favorisent la collaboration, renforcent les liens professionnels et personnels, et favorisent une culture d'entreprise dynamique et inclusive. Notre approche personnalisée nous permet de nous adapter à votre entreprise, en vous offrant des solutions sur mesure pour répondre à vos objectifs spécifiques en matière de team building.</p>
+            </div>
+          </div>
+        </div>
+        <div className="mb-20">
+          <Title semantique="h2" titleLight="Une équipe" titleBold="À votre écoute"/>
+          <div className="flex gap-10 justify-center flex-wrap w-full mt-14">
+            <Card className="flex items-center !pb-4">
+              <img src="/img/team/la.jpg" height={150} width={150} className="rounded-2xl" alt="Laurine"/>
+              <p className="font-NexaHeavy text-lg mt-3">Laurine</p>
+              <p>Commercial</p>
+            </Card>
+            <Card className="flex items-center !pb-4">
+              <img src="/img/team/fl.jpg" height={150} width={150} className="rounded-2xl" alt="Flavie"/>
+              <p className="font-NexaHeavy text-lg mt-3">Flavie</p>
+              <p>Commercial</p>
+            </Card>
+            <Card className="flex items-center !pb-4">
+              <img src="/img/team/ar.jpg" height={150} width={150} className="rounded-2xl" alt="Arthur"/>
+              <p className="font-NexaHeavy text-lg mt-3">Arthur</p>
+              <p>Commercial</p>
+            </Card>
+            <Card className="flex items-center !pb-4">
+              <img src="/img/team/jv.jpg" height={150} width={150} className="rounded-2xl" alt="Jean-victor"/>
+              <p className="font-NexaHeavy text-lg mt-3">Jean-Victor</p>
+              <p>Animateur</p>
+            </Card>
+            <Card className="flex items-center !pb-4">
+              <img src="/img/team/an.jpg" height={150} width={150} className="rounded-2xl" alt="Anais"/>
+              <p className="font-NexaHeavy text-lg mt-3">Anaïs</p>
+              <p>Graphiste / Designer</p>
+            </Card>
+            <Card className="flex items-center !pb-4">
+              <img src="/img/team/er.jpg" height={150} width={150} className="rounded-2xl" alt="Erwan"/>
+              <p className="font-NexaHeavy text-lg mt-3">Erwan</p>
+              <p>Designer UX/UI</p>
+            </Card>
+            <Card className="flex items-center !pb-4">
+              <img src="/img/team/ni.jpg" height={150} width={150} className="rounded-2xl" alt="Nicolas"/>
+              <p className="font-NexaHeavy text-lg mt-3">Nicolas</p>
+              <p>Développeur web</p>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
