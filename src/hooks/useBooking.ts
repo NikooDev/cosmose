@@ -35,6 +35,7 @@ const useBooking = () => {
 			roomID,
 			startDate,
 			endDate,
+			members,
 			phone: booking.phone,
 			price: members * activity.price,
 			duration: activity.playtime,

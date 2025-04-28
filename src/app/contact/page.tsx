@@ -21,25 +21,25 @@ const Contact = () => {
 						<form>
 							<div className="flex flex-col mb-4">
 								<label htmlFor="name" className="mb-2 text-lg font-NexaHeavy">Nom et prénom*</label>
-								<input id="name" className="placeholder:text-theme-50 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
+								<input id="name" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
 							</div>
 							<div className="flex gap-4 mb-4">
 								<div className="flex flex-col w-full">
 									<label htmlFor="email" className="mb-2 text-lg font-NexaHeavy">Adresse e-mail*</label>
-									<input id="email" className="placeholder:text-theme-50 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
+									<input id="email" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
 								</div>
 								<div className="flex flex-col w-full">
 									<label htmlFor="tel" className="mb-2 text-lg font-NexaHeavy">Téléphone</label>
-									<input id="tel" className="placeholder:text-theme-50 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
+									<input id="tel" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
 								</div>
 							</div>
 							<div className="flex flex-col mb-4">
 								<label htmlFor="object" className="mb-2 text-lg font-NexaHeavy">Objet*</label>
-								<input id="object" className="placeholder:text-theme-50 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
+								<input id="object" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
 							</div>
 							<div className="flex flex-col mb-4">
 								<label htmlFor="message" className="mb-2 text-lg font-NexaHeavy">Message*</label>
-								<textarea id="message" rows={6} placeholder="Votre message" className="placeholder:text-theme-50 border border-theme-50 px-4 py-3 rounded-3xl w-full bg-transparent resize-none"/>
+								<textarea id="message" rows={6} placeholder="Votre message" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 px-4 py-3 rounded-3xl w-full bg-transparent resize-none"/>
 							</div>
 						</form>
 					</div>
