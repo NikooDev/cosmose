@@ -1,15 +1,34 @@
 'use client';
 
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { useRouter } from 'next/navigation';
 import Title from '@/components/ui/title';
 import Card from '@/components/ui/card';
 import Image from 'next/image';
 import Button from '@/components/ui/button';
 import './bestsellers.scss';
+import useActivity from "@/hooks/useActivity";
+import {ActivityInterface} from "@/types/activity";
+import {slugify} from "@/utils/functions";
 
-const Bestsellers = () => {
+const Bestsellers = ({ title, subtitle, showButton = true }: {
+  title?: string,
+  subtitle?: string,
+  showButton?: boolean
+}) => {
+  const [activities, setActivities] = useState<ActivityInterface[]>([]);
   const router = useRouter();
+  const { getActivities } = useActivity();
+
+  const handleGetActivities = useCallback(async () => {
+    const activities = await getActivities();
+
+    activities && setActivities(activities);
+  }, [])
+
+  useEffect(() => {
+    handleGetActivities().then();
+  }, [handleGetActivities]);
 
   const handleRedirect = (url: string) => {
     router.push(url);
@@ -19,91 +38,46 @@ const Bestsellers = () => {
     <section className="w-full flex flex-col mt-32 relative min-h-[700px]">
       <div className="container mx-auto">
         <div className="flex items-center justify-center mb-14">
-          <Title titleLight="Découvrez nos" titleBold="Best-Sellers" semantique="h2"/>
+          <Title titleLight={title ? title : 'Découvrez nos'} titleBold={subtitle ? subtitle : 'Best-Sellers'} semantique="h2"/>
         </div>
-        <div className="flex gap-14">
-          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300 hover:cursor-pointer">
-            <Image src="/img/game1.jpg" width={387} height={258} alt="game1" className="w-full h-[258px] rounded-t-3xl"/>
-            <div className="p-4">
-              <p className="text-3xl font-NexaHeavy">Fast Quizz</p>
-              <div className="flex items-center mb-4 mt-1">
-                <div className="flex">
-                  <img src="/img/icons/time.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">2h</p>
-                </div>
-                <p className="mx-2">•</p>
-                <div className="flex">
-                  <img src="/img/icons/users.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">10-40</p>
-                </div>
-                <p className="mx-2">•</p>
-                <div className="flex">
-                  <img src="/img/icons/euro.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">40€/pers</p>
-                </div>
-              </div>
-              <p className="text-lg">
-                Mettez vos équipes au défi avec notre quizz interactif où la rapididé est
-                primordiale. Les participants s'affrontent pour répondre le plus...
-              </p>
-            </div>
-          </Card>
-          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300 hover:cursor-pointer">
-            <Image src="/img/game2.jpg" width={387} height={258} alt="game2" className="w-full h-[258px] rounded-t-3xl"/>
-            <div className="p-4">
-              <p className="text-3xl font-NexaHeavy">Jeu de rôle</p>
-              <div className="flex items-center mb-4 mt-1">
-                <div className="flex">
-                  <img src="/img/icons/time.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">3h</p>
-                </div>
-                <p className="mx-2">•</p>
-                <div className="flex">
-                  <img src="/img/icons/users.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">10</p>
-                </div>
-                <p className="mx-2">•</p>
-                <div className="flex">
-                  <img src="/img/icons/euro.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">30€/pers</p>
-                </div>
-              </div>
-              <p className="text-lg">
-                Les collaborateurs se glissent dans la peau de leurs collègues, apprenant à mieux comprendre leurs perspectives et défis. Cette...
-              </p>
-            </div>
-          </Card>
-          <Card className="w-full p-0 hover:-translate-y-4 transition-transform duration-300 hover:cursor-pointer">
-            <Image src="/img/game3.jpg" width={387} height={258} alt="game3" className="w-full h-[258px] rounded-t-3xl"/>
-            <div className="p-4">
-              <p className="text-3xl font-NexaHeavy">Blindtest musical</p>
-              <div className="flex items-center mb-4 mt-1">
-                <div className="flex">
-                  <img src="/img/icons/time.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">1h</p>
-                </div>
-                <p className="mx-2">•</p>
-                <div className="flex">
-                  <img src="/img/icons/users.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">10-60</p>
-                </div>
-                <p className="mx-2">•</p>
-                <div className="flex">
-                  <img src="/img/icons/euro.svg" alt="time"/>
-                  <p className="ml-2 font-NexaHeavy">20€/pers</p>
-                </div>
-              </div>
-              <p className="text-lg">
-                Laissez la musique vous unir !<br/>Sélectionnez le thème musical qui vous inspire le plus, puis laissez vos collaborateurs deviner les chansons.
-              </p>
-            </div>
-          </Card>
+        <div className="grid grid-cols-3 gap-14">
+          {
+            activities && activities.slice(-3).reverse().map((activity, index) => (
+              <a className="group backdrop-blur-[8px]" href={`/team-building/${slugify(activity.title)}?uid=${activity.uid}`} key={index}>
+                <Card className="p-0 rounded-2xl group-hover:-translate-y-5 transition-transform duration-500 activity-shadow">
+                  <div className="h-[260px] relative">
+                    <Image blurDataURL={activity.pictureUrl} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder="blur" src={activity.pictureUrl} alt={activity.title} fill className="rounded-t-2xl"/>
+                  </div>
+                  <div className="p-4 h-52 overflow-hidden">
+                    <div className="flex items-center justify-around mb-4">
+                      <div className="flex">
+                        <img src="/img/icons/time.svg" alt="time"/>
+                        <p className="ml-2 font-NexaHeavy">{ activity.playtime }h</p>
+                      </div>
+                      <div className="flex">
+                        <img src="/img/icons/users.svg" alt="time"/>
+                        <p className="ml-2 font-NexaHeavy">{ activity.minPlayer } à { activity.maxPlayer } joueurs</p>
+                      </div>
+                      <div className="flex">
+                        <img src="/img/icons/euro.svg" alt="time"/>
+                        <p className="ml-2 font-NexaHeavy">{ activity.price }/pers</p>
+                      </div>
+                    </div>
+                    <p className="font-NexaHeavy text-2xl">{ activity.title }</p>
+                    <p className="font-NexaExtraLight whitespace-break-spaces mt-2 text-ellipsis line-clamp-4">{ activity.description }</p>
+                  </div>
+                </Card>
+              </a>
+            ))
+          }
         </div>
-        <div className="flex justify-center my-8">
-          <Button onClick={() => handleRedirect('/team-building')} className="px-6">Nos team-buildings</Button>
-        </div>
+        { showButton && (
+          <div className="flex justify-center my-8">
+            <Button onClick={() => handleRedirect('/team-building')} className="px-6">Nos team-buildings</Button>
+          </div>
+        )}
       </div>
-      <img src="svg/wave.svg" className="absolute left-0 top-44 w-full -z-10" alt="Rectangle"/>
+      <img src="/svg/wave.svg" className="absolute left-0 top-44 w-full -z-10" alt="Rectangle"/>
     </section>
   );
 }

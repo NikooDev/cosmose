@@ -10,6 +10,7 @@ export interface TitleInterface {
 	semantique: 'h1' | 'h2' | 'h3' | 'h4'
 	titleLight: string;
 	titleBold: string;
+	largeTitleBold?: boolean;
 	className?: string;
 }
 

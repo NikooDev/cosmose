@@ -1,10 +1,12 @@
 import React from 'react';
 import { TitleInterface } from '@/types/ui';
 import { twMerge } from 'tailwind-merge';
+import Class from "classnames";
 
 const Title: React.FC<TitleInterface> = ({
 	titleLight,
 	titleBold,
+	largeTitleBold = false,
 	semantique,
 	className
 }) => {
@@ -14,7 +16,7 @@ const Title: React.FC<TitleInterface> = ({
 		return (
 			<>
 				<span className="font-NexaExtraLight">{titleLight}</span>
-				<span className="font-NexaHeavy text-5xl">{titleBold}</span>
+				<span className={Class("font-NexaHeavy", largeTitleBold ? 'text-[10rem]' : 'text-5xl')}>{titleBold}</span>
 			</>
 		)
 	}

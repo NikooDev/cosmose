@@ -30,7 +30,7 @@ export default function RootLayout({
 		<html lang="fr" className={Class(NexaHeavy.variable, NexaExtraLight.variable)}>
 			<body>
 				<Top>
-					<Toaster position="bottom-center"/>
+					<Toaster position="top-center"/>
 					<Header/>
 					<Wave/>
 					<img src="/svg/ellipse6.svg" height={400} width={600} className="absolute -top-32 left-1/4 -z-10 pointer-events-none" alt="Ellipse"/>

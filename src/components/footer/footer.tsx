@@ -42,7 +42,7 @@ const Footer = () => {
           <label className="mt-1 text-2xl font-NexaExtraLight whitespace-nowrap" htmlFor="newsletter">Ne manquez pas vos
             nouveautés</label>
           <form onSubmit={handleNewsletters} autoComplete="off" className="flex gap-4 items-center mt-5">
-            <input type="text" id="newsletter" value={email ? email : ''} onChange={(event) => setEmail(event.target.value)} placeholder="Adresse e-mail" className="placeholder:text-theme-50 border border-theme-50 h-9 px-4 rounded-full w-full bg-transparent"/>
+            <input type="text" id="newsletter" value={email ? email : ''} onChange={(event) => setEmail(event.target.value)} placeholder="Adresse e-mail" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 h-9 px-4 rounded-full w-full bg-transparent"/>
             <Button type="submit" className="mt-0 px-8 h-9">S'inscrire</Button>
           </form>
         </div>

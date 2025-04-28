@@ -3,7 +3,7 @@ import { db } from '@/config/firebase';
 import { ActivityInterface } from '@/types/activity';
 
 const useActivity = () => {
-	const getActivity = async () => {
+	const getActivities = async () => {
 		const activitiesRef = collection(db, 'activities');
 		const q = query(activitiesRef, where('enable', '==', true));
 		const snapshot = await getDocs(q);
@@ -13,8 +13,19 @@ const useActivity = () => {
 		}
 	}
 
+	const getActivity = async (uid: string) => {
+		const activitiesRef = collection(db, 'activities');
+		const q = query(activitiesRef, where('uid', '==', uid));
+
+		const snapshot = await getDocs(q);
+
+		if (!snapshot.empty) {
+			return snapshot.docs.map((doc) => doc.data())[0] as ActivityInterface;
+		}
+	}
+
 	return {
-		getActivity
+		getActivities, getActivity
 	}
 }
 

@@ -106,6 +106,14 @@ input:-webkit-autofill:active{
   background-color: rgb(var(--theme-100));
 }
 
+.activity-shadow {
+  transition: all .3s ease-in-out;
+}
+
+.activity-shadow:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, .5);
+}
+
 $increment: 0.3;
 
 .animate-slideInUp-0 {

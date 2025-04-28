@@ -16,6 +16,8 @@ const Error = () => {
 				error = 'Impossible de rejoindre la session !\nVeuillez cliquer sur le lien reçu par e-mail pour vous connecter ou contactez le support par chat.';
 			} else if (err === '1') {
 				error = 'Une erreur est survenue !\nVeuillez contacter le support par chat.';
+			} else if (err === '2') {
+				error = 'Votre session n\'a pas encore démarré.';
 			}
 
 			error && toast.error(error, { id: 'cosmoseapp-error', position: 'top-center', duration: 10000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', maxWidth: 500, borderRadius: '15px', color: 'rgb(30 41 59)' } });

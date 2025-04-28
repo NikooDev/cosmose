@@ -1,4 +1,5 @@
 export interface ActivityInterface {
+	uid: string;
 	title: string;
 	baseline: string;
 	keywords: string[];

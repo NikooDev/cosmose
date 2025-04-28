@@ -15,14 +15,14 @@ const Teambuildings = () => {
 	const [loading, setLoading] = useState(false);
 	const [loadingGame, setLoadingGame] = useState(true);
 	const [activities, setActivities] = useState<ActivityInterface[]>([]);
-	const { getActivity } = useActivity();
+	const { getActivities } = useActivity();
 
 	const handleGetActivities = useCallback(async () => {
-		const activities = await getActivity();
+		const activities = await getActivities();
 
 		setTimeout(() => setLoadingGame(false), 500);
 		activities && setActivities(activities);
-	}, [getActivity])
+	}, []);
 
 	useEffect(() => {
 		handleGetActivities().then();
@@ -42,12 +42,12 @@ const Teambuildings = () => {
 			<div className="grid grid-cols-3 gap-14 -mt-10 min-h-96">
 				{
 					!loadingGame && activities && activities.map((activity, index) => (
-						<motion.a className="group backdrop-blur-[8px]" href={`/team-building/${slugify(activity.title)}`} transition={{duration: .8, delay: index * 0.3, ease: [0.68, -0.55, 0.27, 1.55]}} initial={{y: '20px', opacity: 0, visibility: 'hidden'}} animate={{y: 0, opacity: 1, visibility: 'visible'}} key={index}>
-							<Card className="p-0 rounded-2xl group-hover:-translate-y-5 transition-transform duration-500">
+						<motion.a className="group backdrop-blur-[8px]" href={`/team-building/${slugify(activity.title)}?uid=${activity.uid}`} transition={{duration: .8, delay: index * 0.3, ease: [0.68, -0.55, 0.27, 1.55]}} initial={{y: '20px', opacity: 0, visibility: 'hidden'}} animate={{y: 0, opacity: 1, visibility: 'visible'}} key={index}>
+							<Card className="p-0 rounded-2xl group-hover:-translate-y-5 transition-transform duration-500 activity-shadow">
 								<div className="h-[260px] relative">
 									<Image blurDataURL={activity.pictureUrl} placeholder="blur" src={activity.pictureUrl} alt={activity.title} fill className="rounded-t-2xl"/>
 								</div>
-								<div className="p-4 h-64 overflow-hidden">
+								<div className="p-4 h-52 overflow-hidden">
 									<div className="flex items-center justify-around mb-4">
 										<div className="flex">
 											<img src="/img/icons/time.svg" alt="time"/>
@@ -63,7 +63,7 @@ const Teambuildings = () => {
 										</div>
 									</div>
 									<p className="font-NexaHeavy text-2xl">{ activity.title }</p>
-									<p className="font-NexaExtraLight whitespace-break-spaces mt-2 text-ellipsis line-clamp-6">{ activity.description }</p>
+									<p className="font-NexaExtraLight whitespace-break-spaces mt-2 text-ellipsis line-clamp-4">{ activity.description }</p>
 								</div>
 							</Card>
 						</motion.a>

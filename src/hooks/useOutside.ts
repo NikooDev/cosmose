@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const useOutside = (ref: React.MutableRefObject<HTMLDivElement | HTMLUListElement>, handler: React.Dispatch<React.SetStateAction<MouseEvent | TouchEvent>>) => {
+const useOutside = (ref: React.MutableRefObject<HTMLDivElement | HTMLUListElement | HTMLButtonElement>, handler: React.Dispatch<React.SetStateAction<MouseEvent | TouchEvent>>) => {
 
 	useEffect(() => {
 		const pageClickEvent = (event: MouseEvent | TouchEvent) => {
