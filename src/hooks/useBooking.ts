@@ -36,6 +36,7 @@ const useBooking = () => {
 			startDate,
 			endDate,
 			members,
+			contact: booking.email,
 			phone: booking.phone,
 			price: members * activity.price,
 			duration: activity.playtime,
