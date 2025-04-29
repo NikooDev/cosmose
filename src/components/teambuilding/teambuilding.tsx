@@ -205,7 +205,7 @@ const Teambuilding = () => {
 			<img src="/svg/ellipse4.svg" alt="ellipse" className="absolute top-[1000px] right-0 -z-30" height={1000} width={1000}/>
 			<img src="/svg/ellipse3.svg" alt="ellipse" className="absolute top-[1700px] -left-[300px] -z-30" height={1000} width={1000}/>
 			<div className="container mx-auto">
-				<div className="flex gap-12 w-full">
+				<div className="flex flex-wrap-reverse lg:flex-nowrap gap-12 w-full">
 					<div className="w-full">
 						{(() => {
 							const words = activity.title.trim().split(' ');
@@ -241,24 +241,24 @@ const Teambuilding = () => {
 							<Button type="button" onClick={handleScroll} className="px-10 text-lg">Réserver</Button>
 						</div>
 					</div>
-					<div className="relative max-w-[624px] w-full h-full">
+					<div className="relative lg:max-w-[624px] w-full h-full">
 						<div className={Class('absolute -top-10 left-12 bg-white/10 border border-white/10 backdrop-blur-sm rounded-2xl w-36 h-20 flex justify-center items-center hero-icon')}>
 							<Image src="/svg/micro.svg" alt="Micro" height={32} width={24} className="mb-0.5"/>
 						</div>
-						<div className="max-w-[624px] min-h-[416px] relative -z-10">
-							<Image src={activity.pictureUrl} fill priority className="rounded-[30px] w-full max-w-[624px]" alt=""/>
+						<div className="relative -z-10">
+							<img src={activity.pictureUrl} className="rounded-[30px] w-full max-w-full lg:max-w-[624px]" alt=""/>
 						</div>
 						<div className={Class('absolute -bottom-10 right-12 bg-white/10 border border-white/10 backdrop-blur-sm rounded-2xl w-36 h-20 flex justify-center items-center hero-icon')}>
 							<Image src="/svg/camera.svg" alt="Camera" height={31} width={36} className="mb-0.5"/>
 						</div>
 					</div>
 				</div>
-				<div className="flex items-start justify-between gap-24 w-full mt-20">
+				<div className="flex lg:flex-nowrap flex-wrap items-start justify-between gap-24 w-full mt-20">
 					<div className="w-full">
 						<Title semantique="h2" titleLight="" titleBold="Scénario" className="mb-4 text-left !px-0 [&>span:last-child]:text-[30px]"/>
 						<p className="whitespace-break-spaces text-[17px]">{ activity.description }</p>
 					</div>
-					<div className="w-[45%]">
+					<div className="w-[45%] mx-auto lg:mx-0">
 						<ul className="flex flex-col gap-6">
 							<li className="flex items-center gap-3">
 								<img src="/svg/carbon_checkmark-filled.svg" alt="icon"/>
@@ -284,7 +284,7 @@ const Teambuilding = () => {
 						<li><img src="/svg/ic_round-star.svg" alt="stars" height={40} width={40}/></li>
 					</ul>
 					<Title semantique="h2" titleLight="Ils ont passé" titleBold="Un bon moment" className="text-left !px-0 mt-4"/>
-					<div className="grid grid-cols-4 gap-10 mt-16">
+					<div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 mt-16">
 						<div>
 							<ul className="flex items-center gap-1.5">
 								<li><img src="/svg/ic_round-star.svg" alt="stars" height={16} width={16}/></li>
@@ -335,14 +335,14 @@ const Teambuilding = () => {
 			<div id="booking" className="container mx-auto mt-20">
 				<Title semantique="h2" titleLight="N'attendez pas" titleBold="Reservez une session" className="text-left !px-0 mt-4"/>
 				<p className="text-lg mt-3">Réservez une date pour une expérience inoubliable de team building<br/>digital avec Cosmose.</p>
-				<div className="flex items-center gap-14 mt-10 relative">
+				<div className="flex flex-wrap lg:flex-nowrap items-center gap-14 mt-10 relative">
 					<div className="flex w-full bg-theme-50/10 rounded-3xl border border-theme-50/10 backdrop-blur-[8px] p-6">
 						<div className="flex-1">
 							<Calendar prevLabel={<PrevIcon/>} nextLabel={<NextIcon/>} prev2Label={<FirstIcon/>} next2Label={<LastIcon/>} onChange={(value) => selectDate(value as Date)}/>
 						</div>
-						<div className="border-l-[1px] border-theme-50/20 ml-6 flex flex-col justify-between">
-							<div className="pl-6">
-								<p className="text-2xl font-NexaHeavy mt-1.5 pl-4">Heure</p>
+						<div className="border-l-[1px] border-theme-50/20 ml-3 lg:ml-6 flex flex-col justify-between">
+							<div className="pl-3 lg:pl-6">
+								<p className="lg:text-2xl text-lg font-NexaHeavy mt-1.5 pl-4">Heure</p>
 								<div className="max-h-[300px] overflow-y-auto mt-4 flex flex-col gap-3">
 									{
 										timeSlots.map((time, index) => (

@@ -13,34 +13,36 @@ const Contact = () => {
   return (
 		<section className="relative z-10 pt-10 pb-10 min-h-[500px]">
 			<div className="container mx-auto">
-				<div className="flex w-full justify-between animate-slideInUp-2 mt-16">
-					<div className="w-1/2">
-						<Title semantique="h1" titleLight="Une question ?" titleBold="Contactez-nous" className="mb-8 animate-slideInUp-1 !px-0 !text-left"/>
-						<p className="font-NexaHeavy text-2xl mb-2">Coordonnées</p>
-						<div className="flex items-center">
-							<img src="/svg/call.svg" alt="Call" height={32} width={32}/>
-							<span className="text-lg font-NexaHeavy ml-3">02 00 00 00 00</span>
+				<div className="flex flex-wrap lg:flex-nowrap gap-14 w-full justify-between animate-slideInUp-2 mt-16">
+					<div className="w-full">
+						<Title semantique="h1" titleLight="Une question ?" titleBold="Contactez-nous" className="mb-8 animate-slideInUp-1 !px-0 lg:!text-left"/>
+						<div className="lg:text-left text-center">
+							<p className="font-NexaHeavy text-2xl mb-2">Coordonnées</p>
+							<div className="flex items-center justify-center lg:justify-start">
+								<img src="/svg/call.svg" alt="Call" height={32} width={32}/>
+								<span className="text-lg font-NexaHeavy ml-3">02 00 00 00 00</span>
+							</div>
+							<p className="font-NexaHeavy text-2xl mb-2 mt-8">Réseaux</p>
+							<ul className="mt-3 flex justify-center lg:justify-start gap-7">
+								<li>
+									<a href="" target="_blank" role="button" className="group">
+										<img src="/img/icons/instagram.svg" height={28} width={28} className="group-hover:scale-[1.2] transition-transform" alt="instagram"/>
+									</a>
+								</li>
+								<li>
+									<a href="" target="_blank" role="button" className="group">
+										<img src="/img/icons/facebook.svg" height={28} width={28} className="group-hover:scale-[1.2] transition-transform" alt="facebook"/>
+									</a>
+								</li>
+								<li>
+									<a href="" target="_blank" role="button" className="group">
+										<img src="/img/icons/linkedin.svg" height={28} width={28} className="group-hover:scale-[1.2] transition-transform" alt="linkedin"/>
+									</a>
+								</li>
+							</ul>
 						</div>
-						<p className="font-NexaHeavy text-2xl mb-2 mt-8">Réseaux</p>
-						<ul className="mt-3 flex gap-7">
-							<li>
-								<a href="" target="_blank" role="button" className="group">
-									<img src="/img/icons/instagram.svg" height={28} width={28} className="group-hover:scale-[1.2] transition-transform" alt="instagram"/>
-								</a>
-							</li>
-							<li>
-								<a href="" target="_blank" role="button" className="group">
-									<img src="/img/icons/facebook.svg" height={28} width={28} className="group-hover:scale-[1.2] transition-transform" alt="facebook"/>
-								</a>
-							</li>
-							<li>
-								<a href="" target="_blank" role="button" className="group">
-									<img src="/img/icons/linkedin.svg" height={28} width={28} className="group-hover:scale-[1.2] transition-transform" alt="linkedin"/>
-								</a>
-							</li>
-						</ul>
 					</div>
-					<div className="w-1/2">
+					<div className="w-full">
 						<form>
 							<div className="flex flex-col mb-4">
 								<label htmlFor="name" className="mb-2 text-lg font-NexaHeavy">Nom et prénom*</label>

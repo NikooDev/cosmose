@@ -56,7 +56,7 @@ const Search: React.FC<SearchInterface> = ({
 	}, [budget]);
 
   return (
-		<div className="flex items-center gap-4">
+		<div className="flex flex-wrap lg:flex-nowrap items-center gap-4">
 			<div className="flex w-full gap-4">
 				<div className="w-full relative">
 					<label className="flex mb-1.5 font-NexaHeavy" htmlFor="objectif">Objectif</label>
@@ -80,7 +80,7 @@ const Search: React.FC<SearchInterface> = ({
 					<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 				</div>
 			</div>
-			<div className="flex w-3/4 gap-4">
+			<div className="flex lg:w-3/4 w-full gap-4">
 				<div className="w-full">
 					<label className="flex mb-1.5 font-NexaHeavy" htmlFor="date">Date</label>
 					<input type="date" id="date" min={1} max={20} onChange={(event) => handleInputChange('date', event)} defaultValue={searchForm.date} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
@@ -95,7 +95,7 @@ const Search: React.FC<SearchInterface> = ({
 					</div>
 				</div>
 			</div>
-			<Button onClick={handleSearchSubmit} className="mt-0 px-8 h-9 self-end">Rechercher</Button>
+			<Button onClick={handleSearchSubmit} className="mt-0 px-8 w-full lg:w-auto h-9 self-end">Rechercher</Button>
 		</div>
 	);
 }

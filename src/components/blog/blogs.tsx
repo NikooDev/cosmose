@@ -30,7 +30,7 @@ const Blogs = () => {
 
 	return (
 		<div className="container mx-auto">
-			<div className="grid grid-cols-2 gap-8">
+			<div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-14 md:gap-7 gap-8">
 				{
 					blogs && blogs.length > 0 && blogs.map((blog, index) => (
 						<a href="#" className="flex h-full rounded-3xl hover:-translate-y-5 transition-transform duration-500 activity-shadow" key={index} onClick={(event) => handleBlogNavigate(event, blog.title, blog.uid)}>

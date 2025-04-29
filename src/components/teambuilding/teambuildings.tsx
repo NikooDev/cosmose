@@ -39,7 +39,7 @@ const Teambuildings = () => {
 									className="flex items-center flex-col mt-14">
 				<Loader width={32} height={32}/>
 			</motion.div>
-			<div className="grid grid-cols-3 gap-14 -mt-10 min-h-96">
+			<div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-14 md:gap-7 gap-10 -mt-10 min-h-96">
 				{
 					!loadingGame && activities && activities.map((activity, index) => (
 						<motion.a className="group backdrop-blur-[8px]" href={`/team-building/${slugify(activity.title)}?uid=${activity.uid}`} transition={{duration: .8, delay: index * 0.3, ease: [0.68, -0.55, 0.27, 1.55]}} initial={{y: '20px', opacity: 0, visibility: 'hidden'}} animate={{y: 0, opacity: 1, visibility: 'visible'}} key={index}>

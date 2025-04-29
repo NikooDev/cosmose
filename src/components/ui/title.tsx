@@ -16,7 +16,7 @@ const Title: React.FC<TitleInterface> = ({
 		return (
 			<>
 				<span className="font-NexaExtraLight">{titleLight}</span>
-				<span className={Class("font-NexaHeavy", largeTitleBold ? 'text-[10rem]' : 'text-5xl')}>{titleBold}</span>
+				<span className={Class("font-NexaHeavy title-size1", largeTitleBold ? 'text-[10rem]' : 'text-5xl')}>{titleBold}</span>
 			</>
 		)
 	}

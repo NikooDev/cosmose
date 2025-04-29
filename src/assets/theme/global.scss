@@ -118,6 +118,10 @@ input:-webkit-autofill:active{
   font-size: clamp(2.5rem, 8vw, 4.5rem);
 }
 
+.title-size1 {
+  font-size: clamp(2.5rem, 8vw, 3rem);
+}
+
 $increment: 0.3;
 
 .animate-slideInUp-0 {
