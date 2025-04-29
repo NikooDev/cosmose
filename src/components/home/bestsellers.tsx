@@ -40,7 +40,7 @@ const Bestsellers = ({ title, subtitle, showButton = true }: {
         <div className="flex items-center justify-center mb-14">
           <Title titleLight={title ? title : 'Découvrez nos'} titleBold={subtitle ? subtitle : 'Best-Sellers'} semantique="h2"/>
         </div>
-        <div className="grid grid-cols-3 gap-14">
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-14 md:gap-7 gap-10">
           {
             activities && activities.slice(-3).reverse().map((activity, index) => (
               <a className="group backdrop-blur-[8px]" href={`/team-building/${slugify(activity.title)}?uid=${activity.uid}`} key={index}>

@@ -17,7 +17,7 @@ const Infos = () => {
 							l'engagement, quel que soit la distance qui les sépare.
 						</p>
 					</div>
-					<div className="flex gap-14 relative">
+					<div className="flex lg:flex-nowrap flex-wrap gap-14 relative">
 						<img src="svg/ellipse2.svg" height={717} width={1445} className="absolute -top-72 left-40 -z-10 pointer-events-none" alt="Ellipse"/>
 						<Card className="w-full items-center">
 							<img src="/img/icons/reunion.png" height={50} width={50} alt="reunion"/>

@@ -77,13 +77,13 @@ const Intro = () => {
 
 	return (
 		<section className="flex flex-col overflow-hidden pb-24">
-			<h1 className="text-7xl font-[900] mb-10 font-NexaHeavy mt-14 container mx-auto animate-slideInUp-1">
+			<h1 className="text-6xl title-size font-[900] mb-10 font-NexaHeavy mt-14 lg:container px-4 text-center lg:text-left lg:mx-auto animate-slideInUp-1">
 				Briser la barrière<br/>
 				du distanciel
 			</h1>
 			<div className="flex relative">
-				<div className="container mx-auto flex justify-between">
-					<Card className="h-[350px] w-[450px] animate-slideInUp-2">
+				<div className="lg:container px-4 mx-auto flex justify-between">
+					<Card className="h-[350px] lg:w-[450px] max-w-[600px] animate-slideInUp-2">
 						<p className="text-lg">
 								Peut importe vos besoins et votre budget, trouvez
 								l'activité idéale pour vos équipes.</p>
@@ -129,7 +129,7 @@ const Intro = () => {
 							<Button type="submit">Trouver une activité</Button>
 						</form>
 					</Card>
-					<div className="relative w-1/2 h-full hero-img">
+					<div className="relative w-1/2 h-full hero-img hidden lg:flex">
 						{images.map((image, index) => (
 							<Image
 								key={index}

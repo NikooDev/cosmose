@@ -50,6 +50,7 @@ const useBooking = () => {
 		await addDoc(roomRef, {
 			company: booking.company,
 			roomID,
+			endDate
 		});
 
 		const bookCreated = await addDoc(bookingsRef, newBooking);

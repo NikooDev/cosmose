@@ -114,6 +114,10 @@ input:-webkit-autofill:active{
   box-shadow: 0 0 15px rgba(255, 255, 255, .5);
 }
 
+.title-size {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+}
+
 $increment: 0.3;
 
 .animate-slideInUp-0 {

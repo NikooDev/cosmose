@@ -18,6 +18,8 @@ const Error = () => {
 				error = 'Une erreur est survenue !\nVeuillez contacter le support par chat.';
 			} else if (err === '2') {
 				error = 'Votre session n\'a pas encore démarré.';
+			} else if (err === '3') {
+				error = 'Votre session a expiré.';
 			}
 
 			error && toast.error(error, { id: 'cosmoseapp-error', position: 'top-center', duration: 10000, className: 'font-NexaHeavy', style: { background: 'rgb(232 229 251)', maxWidth: 500, borderRadius: '15px', color: 'rgb(30 41 59)' } });

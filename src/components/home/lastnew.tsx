@@ -8,12 +8,12 @@ const Lastnew = () => {
   return (
     <section className="w-full flex flex-col mt-20 relative">
       <img src="svg/ellipse3.svg" height={1000} width={1000} className="absolute -top-14 left-40 -z-10 pointer-events-none" alt="Ellipse"/>
-      <div className="container mx-auto">
+      <div className="lg:container lg:px-0 px-4 mx-auto">
         <div className="flex items-center justify-center">
           <Title titleLight="Dernière nouveauté" titleBold="Quiz en équipe" semantique="h2"/>
         </div>
-        <div className="mt-28 flex justify-between items-center gap-16 w-full">
-          <div className="relative">
+        <div className="mt-28 flex flex-wrap lg:flex-nowrap items-center lg:gap-16 gap-12 w-full">
+          <div className="relative mx-auto">
             <div className="absolute bg-white/20 border border-white/20 backdrop-blur-sm rounded-2xl w-32 h-20 -top-10 left-10 flex justify-center items-center">
               <img src="/svg/micro.svg" alt="Micro" height={42} width={32} className="mb-0.5"/>
             </div>
@@ -22,7 +22,7 @@ const Lastnew = () => {
               <img src="/svg/camera.svg" alt="Camera" height={42} width={32} className="mb-0.5"/>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2 mx-auto md:w-[590px] w-full relative">
             <h2 className="font-NexaHeavy text-2xl">Les Co’llègues</h2>
             <div className="flex items-center my-3">
               <div className="flex">
