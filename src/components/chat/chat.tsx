@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useChatContext, useChatDispatch } from '@/contexts/chat.context';
 import Class from 'classnames';
 import dynamic from 'next/dynamic';
+import {useMediaQuery} from "react-responsive";
 
 const ChatBox = dynamic(() => import('@/components/chat/box'));
 
@@ -39,29 +40,46 @@ const Chat = () => {
 		chatBoxRef.current && chatBoxRef.current.classList.remove('right-[11px]');
 	};
 
+	const isMobile = useMediaQuery({
+		query: '(max-width: 525px)'
+	})
+
   return (
 		<>
-			<div className="fixed bottom-10 z-30 animate-button-chat ease-in-out" style={{
-				inset: 'auto 0px 0px auto',
-				width: '370px',
-				height: '650px',
-				maxHeight: 'calc(100% - 6rem)',
-				maxWidth: '100vw',
-				visibility: isVisible ? 'visible' : 'hidden'
-			}}>
-				<AnimatePresence>
-					{show && (
-						<motion.div className="h-full w-full" initial={{
-							transform: 'translateX(0)',
-							opacity: 0
-						}} animate={{transform: 'translateX(-20px)', opacity: 1}} transition={{
-							duration: .3, ease: 'easeOut'
-						}} exit={{transform: 'translateX(0)', opacity: 0}}>
-							<ChatBox chatBoxRef={chatBoxRef} handleMouseEnter={handleMouseEnter} handleMouseLeave={handleMouseLeave}/>
-						</motion.div>
-					)}
-				</AnimatePresence>
-			</div>
+			{ isMobile ? show && (
+				<div className="fixed bottom-10 z-50" style={{
+					inset: 'auto 0px 0px auto',
+					width: '100%',
+					height: '650px',
+					maxHeight: 'calc(100% - 6rem)',
+					maxWidth: '100%',
+					visibility: isVisible ? 'visible' : 'hidden'
+				}}>
+					<ChatBox chatBoxRef={chatBoxRef}/>
+				</div>
+			) : (
+				<div className="fixed bottom-10 z-50 animate-button-chat ease-in-out" style={{
+					inset: 'auto 0px 0px auto',
+					width: '370px',
+					height: '650px',
+					maxHeight: 'calc(100% - 6rem)',
+					maxWidth: '100vw',
+					visibility: isVisible ? 'visible' : 'hidden'
+				}}>
+					<AnimatePresence>
+						{show && (
+							<motion.div className="h-full w-full" initial={{
+								transform: 'translateX(0)',
+								opacity: 0
+							}} animate={{transform: 'translateX(-20px)', opacity: 1}} transition={{
+								duration: .3, ease: 'easeOut'
+							}} exit={{transform: 'translateX(0)', opacity: 0}}>
+								<ChatBox chatBoxRef={chatBoxRef} handleMouseEnter={handleMouseEnter} handleMouseLeave={handleMouseLeave}/>
+							</motion.div>
+						)}
+					</AnimatePresence>
+				</div>
+			)}
 			<button ref={chatBoxButtonRef} onClick={handleToggle} className={Class('inline-flex fixed bottom-10 right-10 z-30 items-center justify-center hover:bg-theme-400 transition-colors duration-200 group hover:text-white h-16 w-16 rounded-full', show ? 'bg-theme-400 text-white' : 'bg-theme-50 text-theme-400')}>
 				<span className={Class('h-4 w-4 bg-green-500 border-2 group-hover:border-theme-400 transition-colors duration-200 rounded-full absolute bottom-0 left-1', show ? 'border-theme-400' : 'border-theme-50')}></span>
 				<svg xmlns="http://www.w3.org/2000/svg" height={32} width={32} fill="currentColor" viewBox="0 0 60 60">

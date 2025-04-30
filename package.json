@@ -20,6 +20,7 @@
     "react-calendar": "^5.1.0",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-hot-toast": "^2.4.1",
+    "react-responsive": "^10.0.1",
     "react-tooltip": "^5.28.0",
     "swiper": "^11.2.6",
     "tailwind-merge": "^2.5.5"
