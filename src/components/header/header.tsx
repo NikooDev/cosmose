@@ -60,7 +60,7 @@ const Header = () => {
 			<AnimatePresence initial={menuOpen} presenceAffectsLayout={true}>
 				{
 					menuOpen && (
-						<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed bg-theme-900/90 h-full w-full top-0 left-0 z-[999]">
+						<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed bg-theme-900/70 backdrop-blur-[10px] h-full w-full top-0 left-0 z-[999]">
 							<ul className="flex items-center justify-center h-full flex-col gap-8">
 								<li className="relative">
 									<a href="/" onClick={(event) => handleNavigate(event, '/')} className={twMerge(linkClass, 'text-2xl', pathname === '/' && 'active')}>Accueil</a>
