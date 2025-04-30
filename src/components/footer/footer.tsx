@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <div className="w-full">
           <p className="font-NexaHeavy text-[1.3rem]">Newsletters</p>
-          <label className="mt-1 text-2xl font-NexaExtraLight whitespace-nowrap" htmlFor="newsletter">Ne manquez pas vos
+          <label className="mt-1 text-2xl font-NexaExtraLight lg:whitespace-nowrap" htmlFor="newsletter">Ne manquez pas vos
             nouveautés</label>
           <form onSubmit={handleNewsletters} autoComplete="off" className="flex md:flex-nowrap flex-wrap gap-4 items-center mt-5">
             <input type="text" id="newsletter" value={email ? email : ''} onChange={(event) => setEmail(event.target.value)} placeholder="Adresse e-mail" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 h-9 px-4 rounded-full w-full bg-transparent"/>
