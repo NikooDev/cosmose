@@ -65,7 +65,7 @@ const About = () => {
         </div>
         <div className="mb-20">
           <Title semantique="h2" titleLight="Une équipe" titleBold="À votre écoute"/>
-          <div className="flex gap-10 justify-center flex-wrap w-full mt-14">
+          <div className="gap-4 md:gap-8 lg:gap-10 flex justify-center flex-wrap w-full mt-14">
             <Card className="flex items-center !pb-4">
               <img src="/img/team/la.jpg" height={150} width={150} className="rounded-2xl" alt="Laurine"/>
               <p className="font-NexaHeavy text-lg mt-3">Laurine</p>
