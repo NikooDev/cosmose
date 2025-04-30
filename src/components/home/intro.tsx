@@ -83,7 +83,7 @@ const Intro = () => {
 			</h1>
 			<div className="flex relative">
 				<div className="lg:container px-4 mx-auto flex justify-between">
-					<Card className="h-[350px] lg:w-[450px] max-w-[600px] animate-slideInUp-2">
+					<Card className="lg:h-[350px] lg:w-[450px] max-w-[600px] animate-slideInUp-2">
 						<p className="text-lg">
 								Peut importe vos besoins et votre budget, trouvez
 								l'activité idéale pour vos équipes.</p>

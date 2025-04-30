@@ -7,7 +7,7 @@ import Button from '@/components/ui/button';
 const Lastnew = () => {
   return (
     <section className="w-full flex flex-col mt-20 relative">
-      <img src="svg/ellipse3.svg" height={1000} width={1000} className="absolute -top-14 left-40 -z-10 pointer-events-none" alt="Ellipse"/>
+      <img src="svg/ellipse3.svg" height={1000} width={1000} className="fixed lg:absolute -bottom-14 lg:-top-14 left-40 w-[80vw] max-w-none -z-10 pointer-events-none" alt="Ellipse"/>
       <div className="lg:container lg:px-0 px-4 mx-auto">
         <div className="flex items-center justify-center">
           <Title titleLight="Dernière nouveauté" titleBold="Quiz en équipe" semantique="h2"/>

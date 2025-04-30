@@ -41,14 +41,14 @@ const Lastblog = () => {
   return (
 		<section className="w-full flex flex-col mt-36 relative min-h-[600px] lg:mb-0 md:mb-20 mb-20">
 			<div className="container mx-auto">
-				<div className="flex lg:flex-nowrap flex-wrap lg:gap-24 gap-12 items-center w-full">
+				<div className="flex lg:flex-nowrap flex-wrap lg:gap-24 gap-8 items-center w-full">
 					<div className="lg:w-[50%] w-full">
 						<Title titleLight="Notre blog" titleBold="Dernières actus" semantique="h2" className="!text-left !px-0"/>
 						<p className="text-lg mt-3">Retrouvez nos dernières actualités et les tendances actuelles en matière de team building.</p>
 						<Button type="button" onClick={() => router.push('/blog')} className="px-6">Toute l'actualité</Button>
 					</div>
 					<div className="flex items-center lg:w-[60%] w-full">
-						<button ref={prevRef} type="button" className={Class(blogs && blogs.length === 0 && 'opacity-0', 'flex transition-transform hover:scale-150 duration-200 pl-4 pr-6')}>
+						<button ref={prevRef} type="button" className={Class(blogs && blogs.length === 0 && 'opacity-0', 'lg:flex hidden transition-transform hover:scale-150 duration-200 pl-4 pr-6')}>
 							<img src="/svg/back_ui.svg" height={120} width={120} alt="Back"/>
 						</button>
 						<div className="overflow-hidden rounded-3xl">
@@ -82,8 +82,16 @@ const Lastblog = () => {
 								}
 							</Swiper>
 						</div>
-						<button ref={nextRef} type="button" className={Class(blogs && blogs.length === 0 && 'opacity-0', 'transition-transform hover:scale-150 duration-200 pr-4 pl-6')}>
+						<button ref={nextRef} type="button" className={Class(blogs && blogs.length === 0 && 'opacity-0', 'lg:flex hidden transition-transform hover:scale-150 duration-200 pr-4 pl-6')}>
 							<img src="/svg/next_ui.svg" height={120} width={120} alt="Next"/>
+						</button>
+					</div>
+					<div className="lg:hidden flex items-center justify-around w-full">
+						<button ref={prevRef} type="button" className={Class(blogs && blogs.length === 0 && 'opacity-0', 'flex transition-transform hover:scale-150 duration-200 pl-4 pr-6')}>
+							<img src="/svg/back_ui.svg" height={30} width={30} alt="Back"/>
+						</button>
+						<button ref={nextRef} type="button" className={Class(blogs && blogs.length === 0 && 'opacity-0', 'flex transition-transform hover:scale-150 duration-200 pr-4 pl-6')}>
+							<img src="/svg/next_ui.svg" height={30} width={30} alt="Next"/>
 						</button>
 					</div>
 				</div>

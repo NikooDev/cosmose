@@ -18,7 +18,7 @@ const Infos = () => {
 						</p>
 					</div>
 					<div className="flex lg:flex-nowrap flex-wrap gap-14 relative">
-						<img src="svg/ellipse2.svg" height={717} width={1445} className="absolute -top-72 left-40 -z-10 pointer-events-none" alt="Ellipse"/>
+						<img src="svg/ellipse2.svg" height={717} width={1445} className="fixed lg:absolute -top-72 left-40 w-[80vw] max-w-none -z-10 pointer-events-none" alt="Ellipse"/>
 						<Card className="w-full items-center">
 							<img src="/img/icons/reunion.png" height={50} width={50} alt="reunion"/>
 							<p className="font-NexaHeavy text-2xl mt-2 mb-4">Rapprocher</p>
