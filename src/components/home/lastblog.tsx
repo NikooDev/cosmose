@@ -72,7 +72,7 @@ const Lastblog = () => {
 														<Image src={blog.coverImage} alt="Cover" className="rounded-t-3xl" fill/>
 													</div>
 													<div className="p-4">
-														<p className="font-NexaHeavy text-2xl text-left mb-2">{ blog.title }</p>
+														<p className="font-NexaHeavy text-2xl text-left mb-2 line-clamp-3 md:line-clamp-none lg:line-clamp-none">{ blog.title }</p>
 														<p className="line-clamp-3 text-left">{ blog.content }</p>
 													</div>
 												</Card>
