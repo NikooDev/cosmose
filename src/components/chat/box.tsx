@@ -101,10 +101,10 @@ const ChatBox = ({
   };
 
   return (
-    <div ref={chatBoxRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="absolute md:rounded-b-3xl h-[650px] md:w-[370px] w-full overflow-hidden bottom-[7.5rem] right-0" style={{
+    <div ref={chatBoxRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="absolute rounded-b-3xl h-[650px] md:w-[370px] w-full overflow-hidden bottom-[7.5rem] right-0" style={{
       maxHeight: 'calc(100% - 47px)', display: 'flex', flexDirection: 'column'
     }}>
-      <div className="bg-theme-400 md:rounded-t-3xl" style={{
+      <div className="bg-theme-400 rounded-t-3xl" style={{
         flex: '1 1 0', minHeight: 0, display: 'flex', flexDirection: 'column', inset: 0
       }}>
         <div className="flex justify-between h-16 w-full px-4 py-4 relative">
