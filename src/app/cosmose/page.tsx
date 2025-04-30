@@ -66,37 +66,37 @@ const About = () => {
         <div className="mb-20">
           <Title semantique="h2" titleLight="Une équipe" titleBold="À votre écoute"/>
           <div className="gap-4 md:gap-8 lg:gap-10 flex justify-center flex-wrap w-full mt-14">
-            <Card className="flex items-center !pb-4">
+            <Card className="flex items-center !pb-4 w-full md:w-auto">
               <img src="/img/team/la.jpg" height={150} width={150} className="rounded-2xl" alt="Laurine"/>
               <p className="font-NexaHeavy text-lg mt-3">Laurine</p>
               <p>Commercial</p>
             </Card>
-            <Card className="flex items-center !pb-4">
+            <Card className="flex items-center !pb-4 w-full md:w-auto">
               <img src="/img/team/fl.jpg" height={150} width={150} className="rounded-2xl" alt="Flavie"/>
               <p className="font-NexaHeavy text-lg mt-3">Flavie</p>
               <p>Commercial</p>
             </Card>
-            <Card className="flex items-center !pb-4">
+            <Card className="flex items-center !pb-4 w-full md:w-auto">
               <img src="/img/team/ar.jpg" height={150} width={150} className="rounded-2xl" alt="Artur"/>
               <p className="font-NexaHeavy text-lg mt-3">Artur</p>
               <p>Commercial</p>
             </Card>
-            <Card className="flex items-center !pb-4">
+            <Card className="flex items-center !pb-4 w-full md:w-auto">
               <img src="/img/team/jv.jpg" height={150} width={150} className="rounded-2xl" alt="Jean-victor"/>
               <p className="font-NexaHeavy text-lg mt-3">Jean-Victor</p>
               <p>Animateur</p>
             </Card>
-            <Card className="flex items-center !pb-4">
+            <Card className="flex items-center !pb-4 w-full md:w-auto">
               <img src="/img/team/an.jpg" height={150} width={150} className="rounded-2xl" alt="Anais"/>
               <p className="font-NexaHeavy text-lg mt-3">Anaïs</p>
               <p>Graphiste / Designer</p>
             </Card>
-            <Card className="flex items-center !pb-4">
+            <Card className="flex items-center !pb-4 w-full md:w-auto">
               <img src="/img/team/er.jpg" height={150} width={150} className="rounded-2xl" alt="Erwan"/>
               <p className="font-NexaHeavy text-lg mt-3">Erwan</p>
               <p>Designer UX/UI</p>
             </Card>
-            <Card className="flex items-center !pb-4">
+            <Card className="flex items-center !pb-4 w-full md:w-auto">
               <img src="/img/team/ni.jpg" height={150} width={150} className="rounded-2xl" alt="Nicolas"/>
               <p className="font-NexaHeavy text-lg mt-3">Nicolas</p>
               <p>Développeur web</p>
