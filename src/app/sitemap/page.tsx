@@ -3,7 +3,6 @@ import { metadata as initialMetadata } from '@/app/layout';
 import { Metadata } from 'next';
 import Title from '@/components/ui/title';
 import NoEllipse from "@/components/layout/noEllipse";
-import Card from "@/components/ui/card";
 import Link from "next/link";
 
 export const metadata: Metadata = {

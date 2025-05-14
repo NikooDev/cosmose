@@ -1,5 +1,12 @@
 import React from 'react';
 import Title from "@/components/ui/title";
+import {Metadata} from "next";
+import {metadata as initialMetadata} from "@/app/layout";
+
+export const metadata: Metadata = {
+	...initialMetadata,
+	title: 'Cosmose • Accessibilité'
+};
 
 const Accessibilite = () => {
 	return (
