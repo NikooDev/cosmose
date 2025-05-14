@@ -8,6 +8,7 @@ export interface LogoInterface {
 
 export interface TitleInterface {
 	semantique: 'h1' | 'h2' | 'h3' | 'h4'
+	container?: boolean;
 	titleLight: string;
 	titleBold: string;
 	largeTitleBold?: boolean;

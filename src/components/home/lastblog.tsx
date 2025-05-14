@@ -43,7 +43,7 @@ const Lastblog = () => {
 			<div className="container mx-auto">
 				<div className="flex lg:flex-nowrap flex-wrap lg:gap-24 gap-8 items-center w-full">
 					<div className="lg:w-[50%] w-full">
-						<Title titleLight="Notre blog" titleBold="Dernières actus" semantique="h2" className="!text-left !px-0"/>
+						<Title titleLight="Notre blog" titleBold="Dernières actus" container={false} semantique="h2" className="!text-left !px-0"/>
 						<p className="text-lg mt-3">Retrouvez nos dernières actualités et les tendances actuelles en matière de team building.</p>
 						<Button type="button" onClick={() => router.push('/blog')} className="px-6">Toute l'actualité</Button>
 					</div>

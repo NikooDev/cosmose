@@ -35,6 +35,7 @@ const Footer = () => {
             <li><Link href="/mentions-legales" className="hover:underline">Mentions légales</Link></li>
             <li><Link href="/confidentialite" className="hover:underline">Confidentialité</Link></li>
             <li><Link href="/sitemap" className="hover:underline">Plan du site</Link></li>
+            <li><Link href="/accessibilite" className="hover:underline">Accessibilité</Link></li>
           </ul>
         </div>
         <div className="w-full">
@@ -67,9 +68,17 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <p className="text-center py-8">
-        <Logo height={16} color="white" className="inline-flex mb-1 mr-0.5"/> © {new Date().getFullYear()}
-      </p>
+      <div className="container mx-auto">
+        <div className="flex justify-around">
+          <div className="flex items-center gap-2">
+            <img src="svg/checkmark_circle.svg" alt="" height={24} width={24}/>
+            <p>RGAA : Conformité partielle</p>
+          </div>
+          <p className="text-center py-8">
+            <Logo height={16} color="white" className="inline-flex mb-1 mr-0.5"/> © {new Date().getFullYear()}
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }

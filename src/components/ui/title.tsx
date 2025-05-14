@@ -7,10 +7,11 @@ const Title: React.FC<TitleInterface> = ({
 	titleLight,
 	titleBold,
 	largeTitleBold = false,
+	container = true,
 	semantique,
 	className
 }) => {
-	const titleClass = twMerge('flex flex-col text-center text-2xl container mx-auto', className);
+	const titleClass = twMerge('flex flex-col text-center text-2xl', container && 'container mx-auto', className);
 
 	const showContent = () => {
 		return (

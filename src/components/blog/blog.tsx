@@ -35,7 +35,7 @@ const Blog = () => {
 			<div className="relative h-60 w-full mx-auto">
 				<Image src={blog.coverImage} alt={blog.title} className="object-cover rounded-3xl" fill/>
 			</div>
-			<Title semantique="h1" titleLight="" titleBold={blog.title} className="mt-16 !text-left !px-0"/>
+			<Title semantique="h1" titleLight="" titleBold={blog.title} container={false} className="mt-16 !text-left !px-0"/>
 			<p className="text-2xl italic mt-4">{ blog.subtitle }</p>
 			<p className="mt-16 whitespace-break-spaces text-lg">{ blog.content }</p>
 		</div>

@@ -14,7 +14,7 @@ const Legal = () => {
 			<Title semantique="h1" titleLight="Mentions" titleBold="Légales" className="mb-10 animate-slideInUp-1"/>
 			<div className="container mx-auto mb-10 animate-slideInUp-2">
 				<h2 className="font-NexaHeavy text-2xl">1. Éditeur du site</h2>
-				<p className="text-lg">Le site www.cosmose.com est édité par :</p>
+				<p className="text-lg">Le site <a href="/" className="underline hover:font-semibold">www.cosmose.com</a> est édité par :</p>
 				<p className="font-NexaHeavy text-lg mt-2">Cosmose</p>
 				<p className="leading-6 mt-2">
 					Société à responsabilité limitée (SARL) au capital de 10 000 €<br/>

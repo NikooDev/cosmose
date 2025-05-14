@@ -48,9 +48,20 @@ select:hover {
   cursor: pointer;
 }
 
-.container {
-  padding: 0 1rem;
+.container, .lg\:container {
+  max-width: 100%!important;
+  padding: 0 7rem!important;
 }
+
+@media screen and (max-width: 1024px) {
+  .container, .lg\:container {
+    padding: 0 2rem!important;
+  }
+}
+
+
+
+
 
 ::-webkit-scrollbar {
   width: 6px;
