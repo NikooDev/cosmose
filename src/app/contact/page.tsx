@@ -15,7 +15,7 @@ const Contact = () => {
 			<div className="container mx-auto">
 				<div className="flex flex-wrap lg:flex-nowrap gap-14 w-full justify-between animate-slideInUp-2 mt-16">
 					<div className="w-full">
-						<Title semantique="h1" titleLight="Une question ?" titleBold="Contactez-nous" className="mb-8 animate-slideInUp-1 !px-0 lg:!text-left"/>
+						<Title semantique="h1" titleLight="Une question ?" container={false} titleBold="Contactez-nous" className="mb-8 animate-slideInUp-1 !px-0 lg:!text-left"/>
 						<div className="lg:text-left text-center">
 							<p className="font-NexaHeavy text-2xl mb-2">Coordonnées</p>
 							<div className="flex items-center justify-center lg:justify-start">
