@@ -255,7 +255,7 @@ const Teambuilding = () => {
 				</div>
 				<div className="flex lg:flex-nowrap flex-wrap items-start justify-between gap-24 w-full mt-20">
 					<div className="w-full">
-						<Title semantique="h2" titleLight="" titleBold="Scénario" className="mb-4 text-left !px-0 [&>span:last-child]:text-[30px]"/>
+						<Title semantique="h2" titleLight="" titleBold="Scénario" container={false} className="mb-4 text-left !px-0 [&>span:last-child]:text-[30px]"/>
 						<p className="whitespace-break-spaces text-[17px]">{ activity.description }</p>
 					</div>
 					<div className="w-[45%] mx-auto lg:mx-0">
@@ -283,7 +283,7 @@ const Teambuilding = () => {
 						<li><img src="/svg/ic_round-star.svg" alt="stars" height={40} width={40}/></li>
 						<li><img src="/svg/ic_round-star.svg" alt="stars" height={40} width={40}/></li>
 					</ul>
-					<Title semantique="h2" titleLight="Ils ont passé" titleBold="Un bon moment" className="text-left !px-0 mt-4"/>
+					<Title semantique="h2" titleLight="Ils ont passé" container={false} titleBold="Un bon moment" className="text-left !px-0 mt-4"/>
 					<div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 mt-16">
 						<div>
 							<ul className="flex items-center gap-1.5">
@@ -333,7 +333,7 @@ const Teambuilding = () => {
 				</div>
 			</div>
 			<div id="booking" className="container mx-auto mt-20">
-				<Title semantique="h2" titleLight="N'attendez pas" titleBold="Reservez une session" className="text-left !px-0 mt-4"/>
+				<Title semantique="h2" titleLight="N'attendez pas" container={false} titleBold="Reservez une session" className="text-left !px-0 mt-4"/>
 				<p className="text-lg mt-3">Réservez une date pour une expérience inoubliable de team building<br/>digital avec Cosmose.</p>
 				<div className="flex flex-wrap lg:flex-nowrap items-center gap-14 mt-10 relative">
 					<div className="flex w-full bg-theme-50/10 rounded-3xl border border-theme-50/10 backdrop-blur-[8px] p-6">
