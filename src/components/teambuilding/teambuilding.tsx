@@ -215,6 +215,7 @@ const Teambuilding = () => {
 								<Title
 									titleLight={titleLight}
 									titleBold={titleBold}
+									container={false}
 									semantique="h2"
 									className="text-left !px-0 text-[35px]"
 								/>

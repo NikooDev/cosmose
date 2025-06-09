@@ -71,7 +71,7 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="flex justify-around">
           <div className="flex items-center gap-2">
-            <img src="svg/checkmark_circle.svg" alt="" height={24} width={24}/>
+            <img src="/svg/checkmark_circle.svg" alt="" height={24} width={24}/>
             <p>RGAA : Conformité partielle</p>
           </div>
           <p className="text-center py-8">

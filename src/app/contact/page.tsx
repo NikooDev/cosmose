@@ -3,6 +3,7 @@ import { metadata as initialMetadata } from '@/app/layout';
 import { Metadata } from 'next';
 import Title from '@/components/ui/title';
 import Button from "@/components/ui/button";
+import NoEllipse from "@/components/layout/noEllipse";
 
 export const metadata: Metadata = {
 	...initialMetadata,
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 const Contact = () => {
   return (
 		<section className="relative z-10 pt-10 pb-10 min-h-[500px]">
+			<NoEllipse/>
 			<div className="container mx-auto">
 				<div className="flex flex-wrap lg:flex-nowrap gap-14 w-full justify-between animate-slideInUp-2 mt-16">
 					<div className="w-full">
