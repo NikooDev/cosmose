@@ -11,6 +11,7 @@
   "dependencies": {
     "@multiavatar/multiavatar": "^1.0.7",
     "@szhsin/react-menu": "^4.2.3",
+    "@vercel/analytics": "^1.5.0",
     "classnames": "^2.5.1",
     "firebase": "^11.0.2",
     "luxon": "^3.5.0",

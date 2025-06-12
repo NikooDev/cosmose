@@ -11,6 +11,7 @@ import Top from '@/app/top';
 import Chat from '@/components/chat/chat';
 import '@/assets/theme/global.scss';
 import Error from '@/components/error/error';
+import {Analytics} from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
 	icons: {
@@ -46,6 +47,7 @@ export default function RootLayout({
 					</ChatProvider>
 					<Footer/>
 				</Top>
+			<Analytics/>
 			</body>
 		</html>
 	);
