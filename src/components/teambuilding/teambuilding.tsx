@@ -381,7 +381,7 @@ const Teambuilding = () => {
 								<label htmlFor="message" className="mb-2 text-lg font-NexaHeavy">Message</label>
 								<textarea id="message" ref={messageRef} onChange={handleChange} name="message" autoComplete="off" rows={3} placeholder="Votre message (facultatif)" className="placeholder:text-theme-50 border border-theme-50 focus:bg-white/10 transition-colors duration-200 px-4 py-3 rounded-3xl w-full bg-transparent resize-none"/>
 							</div>
-							<Button type="submit" color="primary" className="w-full mt-0">Réserver { booking && booking.members && getPrice(activity.price) !== 0 ? '• '+getPrice(activity.price)+' € HT' : '' }</Button>
+							<Button type="submit" color="primary" className="w-full mt-0">Réserver</Button>
 						</form>
 					</div>
 				</div>
