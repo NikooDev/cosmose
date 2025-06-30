@@ -78,14 +78,14 @@ const Intro = () => {
 	return (
 		<section className="flex flex-col overflow-hidden pb-24">
 			<h1 className="text-6xl title-size font-[900] mb-10 font-NexaHeavy mt-14 lg:container px-4 text-center lg:text-left lg:mx-auto animate-slideInUp-1">
-				Briser la barrière<br/>
+				Brisez la barrière<br/>
 				du distanciel
 			</h1>
 			<div className="flex relative">
 				<div className="lg:container px-4 mx-auto flex justify-between">
 					<Card className="lg:h-[350px] lg:w-[450px] max-w-[600px] animate-slideInUp-2">
 						<p className="text-lg">
-								Peut importe vos besoins et votre budget, trouvez
+								Peu importe vos besoins et votre budget, trouvez
 								l'activité idéale pour vos équipes.</p>
 						<form className="flex flex-col w-full" onSubmit={handleSearchSubmit} action="/team-building" method="get">
 							<div className="flex w-full gap-4 mt-8">
