@@ -254,12 +254,12 @@ const Teambuilding = () => {
 						</div>
 					</div>
 				</div>
-				<div className="flex lg:flex-nowrap flex-wrap items-start justify-between gap-24 w-full mt-20">
+				<div className="flex lg:flex-nowrap flex-wrap items-start justify-between md:gap-24 gap-10 w-full mt-20">
 					<div className="w-full">
 						<Title semantique="h2" titleLight="" titleBold="Scénario" container={false} className="mb-4 text-left !px-0 [&>span:last-child]:text-[30px]"/>
 						<p className="whitespace-break-spaces text-[17px]">{ activity.description }</p>
 					</div>
-					<div className="w-[45%] mx-auto lg:mx-0">
+					<div className="w-full md:w-[45%] mx-auto lg:mx-0">
 						<ul className="flex flex-col gap-6">
 							<li className="flex items-center gap-3">
 								<img src="/svg/carbon_checkmark-filled.svg" alt="icon"/>
