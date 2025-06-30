@@ -30,7 +30,7 @@ const Teambuildings = () => {
 
   return (
 		<>
-			<Card className="w-4/5 animate-slideInUp-2 self-center">
+			<Card className="w-full md:w-4/5 animate-slideInUp-2 self-center">
 				<Search searchForm={searchForm} setSearchForm={setSearchForm} setLoading={setLoading}/>
 			</Card>
 			<motion.div initial={{y: '0px', opacity: 0, visibility: 'hidden'}}

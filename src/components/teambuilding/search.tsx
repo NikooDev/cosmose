@@ -57,7 +57,7 @@ const Search: React.FC<SearchInterface> = ({
 
   return (
 		<div className="flex flex-wrap lg:flex-nowrap items-center gap-4">
-			<div className="flex w-full gap-4">
+			<div className="flex flex-wrap md:flex-nowrap w-full gap-4">
 				<div className="w-full relative">
 					<label className="flex mb-1.5 font-NexaHeavy" htmlFor="objectif">Objectif</label>
 					<select id="objectif" className="w-full h-9 text-slate-800 rounded-2xl pl-3 pr-9 appearance-none font-NexaHeavy"
@@ -75,13 +75,13 @@ const Search: React.FC<SearchInterface> = ({
 						<path d="M20.08,6.83a.5.5,0,0,1,.71,0l1.06,1.06a.48.48,0,0,1,0,.7l-9.19,9.19a.75.75,0,0,1-.53.22h-.26a.75.75,0,0,1-.53-.22L2.15,8.59a.48.48,0,0,1,0-.7L3.21,6.83a.5.5,0,0,1,.71,0L12,14.91Z"/>
 					</svg>
 				</div>
-				<div className="w-1/2">
+				<div className="w-full md:w-1/2">
 					<label className="flex mb-1.5 font-NexaHeavy" htmlFor="members">Participants</label>
 					<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 				</div>
 			</div>
-			<div className="flex lg:w-3/4 w-full gap-4">
-				<div className="w-full">
+			<div className="flex flex-wrap md:flex-nowrap lg:w-3/4 w-full gap-4">
+				<div className="w-full pr-4 md:pr-0">
 					<label className="flex mb-1.5 font-NexaHeavy" htmlFor="date">Date</label>
 					<input type="date" id="date" min={1} max={20} onChange={(event) => handleInputChange('date', event)} defaultValue={searchForm.date} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 				</div>

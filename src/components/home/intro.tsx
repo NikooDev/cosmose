@@ -88,7 +88,7 @@ const Intro = () => {
 								Peu importe vos besoins et votre budget, trouvez
 								l'activité idéale pour vos équipes.</p>
 						<form className="flex flex-col w-full" onSubmit={handleSearchSubmit} action="/team-building" method="get">
-							<div className="flex w-full gap-4 mt-8">
+							<div className="flex flex-wrap md:flex-nowrap w-full gap-4 mt-8">
 								<div className="w-full relative">
 									<label className="flex mb-1.5 font-NexaHeavy" htmlFor="objectif">Objectif</label>
 									<select id="objectif" className="w-full h-9 text-slate-800 rounded-2xl pl-3 pr-9 appearance-none font-NexaHeavy"
@@ -111,8 +111,8 @@ const Intro = () => {
 									<input type="number" min={1} id="members" max={20} onChange={(event) => handleInputChange('members', event)} defaultValue={searchForm.members} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 								</div>
 							</div>
-							<div className="flex w-full gap-4 mt-4">
-								<div className="w-full">
+							<div className="flex flex-wrap md:flex-nowrap w-full gap-4 mt-4">
+								<div className="w-full pr-4 md:pr-0">
 									<label className="flex mb-1.5 font-NexaHeavy" htmlFor="date">Date</label>
 									<input type="date" id="date" min={1} max={20} onChange={(event) => handleInputChange('date', event)} defaultValue={searchForm.date} placeholder="4" className="w-full h-9 text-slate-800 rounded-2xl px-3 font-NexaHeavy"/>
 								</div>
