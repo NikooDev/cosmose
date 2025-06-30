@@ -333,15 +333,15 @@ const Teambuilding = () => {
 					</div>
 				</div>
 			</div>
-			<div id="booking" className="container mx-auto mt-20">
+			<div id="booking" className="md:container md:mx-auto mt-20 px-4 md:px-0">
 				<Title semantique="h2" titleLight="N'attendez pas" container={false} titleBold="Reservez une session" className="text-left !px-0 mt-4"/>
 				<p className="text-lg mt-3">Réservez une date pour une expérience inoubliable de team building<br/>digital avec Cosmose.</p>
 				<div className="flex flex-wrap lg:flex-nowrap items-center gap-14 mt-10 relative">
-					<div className="flex w-full bg-theme-50/10 rounded-3xl border border-theme-50/10 backdrop-blur-[8px] p-6">
+					<div className="flex w-full bg-theme-50/10 rounded-3xl border border-theme-50/10 backdrop-blur-[8px] md:p-6 p-4">
 						<div className="flex-1">
 							<Calendar prevLabel={<PrevIcon/>} nextLabel={<NextIcon/>} prev2Label={<FirstIcon/>} next2Label={<LastIcon/>} onChange={(value) => selectDate(value as Date)}/>
 						</div>
-						<div className="border-l-[1px] border-theme-50/20 ml-3 lg:ml-6 flex flex-col justify-between">
+						<div className="hidden md:flex border-l-[1px] border-theme-50/20 ml-3 lg:ml-6 flex-col justify-between">
 							<div className="pl-3 lg:pl-6">
 								<p className="lg:text-2xl text-lg font-NexaHeavy mt-1.5 pl-4">Heure</p>
 								<div className="max-h-[300px] overflow-y-auto mt-4 flex flex-col gap-3">
@@ -355,9 +355,20 @@ const Teambuilding = () => {
 							</div>
 						</div>
 					</div>
+					<div className="md:hidden overflow-hidden -mt-10 pt-4">
+						<p className="text-2xl font-NexaHeavy pl-4">Choisissez une heure</p>
+						<div className="overflow-y-auto mt-4 flex overflow-x-scroll">
+							{
+								timeSlots.map((time, index) => (
+									<button onClick={() => handleTimeSelect(time)}
+													className={Class(time === selectedTime ? 'bg-theme-500' : '','inline-flex self-start text-lg font-NexaHeavy mr-4 px-4 py-1.5 rounded-full hover:bg-theme-500 focus:bg-theme-500 transition-colors duration-200')} key={index}>{ time }</button>
+								))
+							}
+						</div>
+					</div>
 					<div className="w-full">
 						<form method="post" ref={formRef} onSubmit={handleSubmit} autoComplete="off" className="w-full">
-							<div className="flex items-center gap-4 w-full mb-4">
+							<div className="flex flex-wrap md:flex-nowrap items-center gap-4 w-full mb-4">
 								<div className="flex flex-col w-full">
 									<label htmlFor="company" className="mb-2 text-lg font-NexaHeavy">Organisme*</label>
 									<input type="text" id="company" ref={companyRef} onChange={handleChange} name="company" autoComplete="off" className="placeholder:text-theme-50 border border-theme-50 focus:bg-white/10 transition-colors duration-200 h-10 px-4 rounded-full w-full bg-transparent"/>
@@ -367,7 +378,7 @@ const Teambuilding = () => {
 									<input type="text" id="email" ref={emailRef} onChange={handleChange} name="email" autoComplete="off" className="placeholder:text-theme-50 border border-theme-50 focus:bg-white/10 transition-colors duration-200 h-10 px-4 rounded-full w-full bg-transparent"/>
 								</div>
 							</div>
-							<div className="flex items-center gap-4 w-full mb-4">
+							<div className="flex flex-wrap md:flex-nowrap items-center gap-4 w-full mb-4">
 								<div className="flex flex-col w-full">
 									<label htmlFor="numberUser" className="mb-2 text-lg font-NexaHeavy">Nombre de participants*</label>
 									<input type="number" max={40} ref={userRef} onChange={handleChange} name="members" id="numberUser" autoComplete="off" className="placeholder:text-theme-50 focus:bg-white/10 transition-colors duration-200 border border-theme-50 h-10 px-4 rounded-full w-full bg-transparent"/>
